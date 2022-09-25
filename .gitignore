@@ -35,3 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### OpenApi generated files ###
+/archery-be/generated
+/archery-fe/src/app/gen
