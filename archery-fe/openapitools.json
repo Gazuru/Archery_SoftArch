@@ -1,0 +1,17 @@
+{
+  "$schema": "./node_modules/@openapitools/openapi-generator-cli/config.schema.json",
+  "spaces": 2,
+  "generator-cli": {
+    "version": "6.2.0",
+    "generators": {
+      "archery-be": {
+        "generatorName": "typescript-angular",
+        "output": "#{cwd}/src/app/gen/archery-be",
+        "glob": "../archery-be/openapi.yaml",
+        "typeMappings": {
+          "set": "Array"
+        }
+      }
+    }
+  }
+}

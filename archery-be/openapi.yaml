@@ -4,6 +4,13 @@ info:
   description: Archery
   version: 1.0.0
 servers:
-  - url: 'https'
+  - url: 'https://localhost:8080/api/archery'
 paths:
+  /test:
+    get:
+      operationId: getTest
+      description: Test GET endpoint.
+      responses:
+        '200':
+          description: OK
   
