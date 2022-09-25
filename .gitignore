@@ -39,3 +39,6 @@ out/
 ### OpenApi generated files ###
 /archery-be/generated
 /archery-fe/src/app/gen
+
+### DB ###
+data
