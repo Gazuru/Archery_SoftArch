@@ -1,0 +1,28 @@
+plugins {
+  id "com.github.node-gradle.node" version "3.4.0"
+  id 'java'
+}
+
+node {
+  nodeProjectDir = file("${project.projectDir}")
+}
+
+task npmRunBuild(type: NpmTask) {
+  dependsOn tasks.npmInstall, 'generateClients'
+
+  npmCommand.set(['run', 'build'])
+  inputs.files('angular.json', '.browserslistrc', 'tsconfig.json', 'tsconfig.app.json', 'tsconfig.worker.json')
+    .withPathSensitivity(PathSensitivity.RELATIVE)
+  inputs.dir(project.fileTree('src').exclude('**/*.spec.ts'))
+    .withPathSensitivity(PathSensitivity.RELATIVE)
+  inputs.dir(project.fileTree('node_modules').exclude('.cache', '.cli-ngcc'))
+  outputs.dir(project.layout.projectDirectory.dir('dist'))
+  outputs.cacheIf { true }
+}
+
+task generateClients(type: NpmTask) {
+  args = ['run', 'openapi-generate']
+  inputs.files("${rootProject.rootDir}/archery-be/openapi.yaml", "openapitools.json")
+  outputs.dir("${project.projectDir}/src/app/gen")
+  outputs.cacheIf { true }
+}
