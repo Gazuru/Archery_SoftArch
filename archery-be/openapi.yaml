@@ -13,4 +13,14 @@ paths:
       responses:
         '200':
           description: OK
+
+components:
+  schemas:
+    BowType:
+      type: string
+      enum:
+        - TRADITIONAL
+        - HUNTING_RECURVE
+        - OLYMPIC_RECURVE
+        - COMPOUND
   
