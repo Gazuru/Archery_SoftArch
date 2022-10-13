@@ -9,3 +9,7 @@ spring:
   h2:
     console:
       enabled: true
+  security:
+    user:
+      password: password
+      name: name
