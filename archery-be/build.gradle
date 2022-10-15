@@ -2,7 +2,6 @@ plugins {
     id 'org.springframework.boot' version '2.7.4'
     id 'io.spring.dependency-management' version '1.0.14.RELEASE'
     id 'java'
-    id "org.openapi.generator" version "6.1.0"
 }
 
 group = 'hu.bme.aut'
@@ -34,32 +33,6 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
-}
-
-compileJava.dependsOn tasks.openApiGenerate
-
-openApiGenerate {
-    generatorName = "spring"
-    inputSpec = "$projectDir/openapi.yaml".toString()
-    outputDir = "$projectDir/generated/openapi".toString()
-    library = "spring-boot"
-    generateModelTests = false
-    generateModelDocumentation = false
-    generateApiTests = false
-    generateApiDocumentation = false
-    modelPackage = "hu.bme.aut.archerybe.genapi.business.dto"
-    apiPackage = "hu.bme.aut.archerybe.genapi.business.controller"
-    configOptions = [
-            oas3               : "true",
-            useSpringController: "true",
-            useSpringFox       : "false",
-            interfaceOnly      : "true"
-    ]
-}
-
-sourceSets.main.java {
-    srcDirs 'src/main/java'
-    srcDirs 'generated/openapi/src/main/java'
 }
 
 tasks.named('test') {
