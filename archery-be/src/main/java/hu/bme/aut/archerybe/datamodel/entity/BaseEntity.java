@@ -1,14 +1,14 @@
 package hu.bme.aut.archerybe.datamodel.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.annotations.Type;
-
+import java.util.UUID;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import java.util.UUID;
+
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.Type;
 
 @MappedSuperclass
 @Getter
