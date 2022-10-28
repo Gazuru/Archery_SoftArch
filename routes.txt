@@ -1,0 +1,35 @@
+post
+/login
+
+post
+/register
+
+get, post
+/equipments
+
+get, del, put
+/equipments/{id}
+
+get, post
+/trainings
+
+get, del ,put
+/trainings/{id}
+
+get
+/trainings/{id}/statistics
+
+post
+/trainings/{id}/rounds
+
+get, del ,put
+/trainings/{id}/rounds/{id}
+
+get
+/profiles
+
+get
+/profiles/{id}
+
+get
+/profiles/{id}/statistics
