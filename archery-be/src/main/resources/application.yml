@@ -13,3 +13,6 @@ spring:
     user:
       password: password
       name: name
+
+api:
+  path: /api/archery
