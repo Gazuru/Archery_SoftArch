@@ -5,8 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class BowDto {
+public class RoundDto {
 
-    private String bowType;
+    private String training;
 
 }

@@ -40,4 +40,10 @@ public class TrainingService {
             trainingRepository.deleteById(id);
         }
     }
+
+    public Training updateTraining(UUID id, TrainingDto trainingDto) {
+        var training = getTrainingById(id);
+        /* set attributes from dto to training entity */
+        return trainingRepository.save(training);
+    }
 }

@@ -22,7 +22,7 @@ public class BowController {
     }
 
     @PostMapping("/bows")
-    public Bow createBow(BowDto bowDto){
+    public Bow createBow(@RequestBody BowDto bowDto){
         return bowService.createBow(bowDto);
     }
 

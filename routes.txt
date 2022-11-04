@@ -4,6 +4,10 @@ post
 post
 /register
 
+api base: /api/archery/
+
+equipments == bow, not yet decided
+
 get, post
 /equipments
 
@@ -19,11 +23,11 @@ get, del ,put
 get
 /training/{id}/statistics
 
-post
+get, post
 /training/{id}/rounds
 
 get, del ,put
-/training/{id}/rounds/{id}
+/training/{id}/round/{id} -> lehetne /round/{id}
 
 get
 /profiles
