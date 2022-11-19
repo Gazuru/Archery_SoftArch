@@ -1,48 +1,50 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
+import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatToolbarModule} from "@angular/material/toolbar";
-import {MatIconModule} from "@angular/material/icon";
-import {NavbarComponent} from './navbar/navbar.component';
-import {LoginComponent} from "./login/login.component";
-import {MatButtonModule} from "@angular/material/button";
-import {MatCardModule} from "@angular/material/card";
-import {FormsModule} from "@angular/forms";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatInputModule} from "@angular/material/input";
+import {LoginComponent} from './components/login/login.component';
+import {RegisterComponent} from './components/register/register.component';
+import {ProfileComponent} from './components/profile/profile.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import {RouterModule, Routes} from "@angular/router";
-import {MatMenuModule} from "@angular/material/menu";
-
-const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: 'home'},
-  {path: 'home', component: AppComponent},
-  {path: 'login', component: LoginComponent}
-]
+import {authInterceptorProviders} from "./helpers/auth.interceptor";
+import {CaffsComponent} from './components/caffs/caffs.component';
+import {MyCaffsComponent} from './components/my-caffs/my-caffs.component';
+import {UploadCaffComponent} from './components/upload-caff/upload-caff.component';
+import {DetailsCaffComponent} from './components/details-caff/details-caff.component';
+import {DetailsProfileComponent} from './components/details-profile/details-profile.component';
+import {EditProfileComponent} from './components/edit-profile/edit-profile.component';
+import {CaffCardComponent} from './components/caff-card/caff-card.component';
+import { CommentComponent } from './components/comment/comment.component';
+import { CaffCardMinimalComponent } from './components/caff-card-minimal/caff-card-minimal.component';
+import { DownloadedCaffCardComponent } from './components/downloaded-caff-card/downloaded-caff-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
+    ProfileComponent,
+    CaffsComponent,
+    MyCaffsComponent,
+    UploadCaffComponent,
+    DetailsCaffComponent,
+    DetailsProfileComponent,
+    EditProfileComponent,
+    CaffCardComponent,
+    CommentComponent,
+    CaffCardMinimalComponent,
+    DownloadedCaffCardComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCardModule,
+    AppRoutingModule,
     FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    RouterModule.forRoot(routes),
-    MatMenuModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule {
