@@ -35,10 +35,9 @@ public class User extends BaseEntity {
     @ManyToMany(fetch = FetchType.LAZY)
     Set<Authority> authorities = new HashSet<>();
 
-    public User(String username, String email, String password, Set<Authority> authorities) {
+    public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.authorities = authorities;
     }
 }
