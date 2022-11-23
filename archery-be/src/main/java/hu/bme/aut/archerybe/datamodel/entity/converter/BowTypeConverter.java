@@ -3,7 +3,7 @@ package hu.bme.aut.archerybe.datamodel.entity.converter;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
-import hu.bme.aut.archerybe.datamodel.entity.BowType;
+import hu.bme.aut.archerybe.datamodel.entity.enums.BowType;
 
 @Converter
 public class BowTypeConverter implements AttributeConverter<BowType, String> {

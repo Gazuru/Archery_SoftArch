@@ -16,3 +16,7 @@ spring:
 
 api:
   path: /api/archery
+
+archery:
+  jwtSecret: archerySecretAu5nUNazDknDpRObLjYtmrRhX6hMTXAEb4U64BP7qiboL5LI28kpqRjBh8Sa
+  jwtExpirationMs: 86400000
