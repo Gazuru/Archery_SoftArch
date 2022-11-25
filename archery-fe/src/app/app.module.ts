@@ -19,6 +19,20 @@ import {CaffCardComponent} from './components/caff-card/caff-card.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { CaffCardMinimalComponent } from './components/caff-card-minimal/caff-card-minimal.component';
 import { DownloadedCaffCardComponent } from './components/downloaded-caff-card/downloaded-caff-card.component';
+import { BowsComponent } from './components/bows/bows.component';
+import { BowEditComponent } from './components/bow-edit/bow-edit.component';
+import { BowNewComponent } from './components/bow-new/bow-new.component';
+import { BowDetailsComponent } from './components/bow-details/bow-details.component';
+import { ProfilesComponent } from './components/profiles/profiles.component';
+import { ProfileEditComponent } from './components/profile-edit/profile-edit.component';
+import { TrainingsComponent } from './components/trainings/trainings.component';
+import { TrainingAddComponent } from './components/training-add/training-add.component';
+import { TrainingDetailsComponent } from './components/training-details/training-details.component';
+import { RoundsComponent } from './components/rounds/rounds.component';
+import { RoundAddComponent } from './components/round-add/round-add.component';
+import { RoundDetailsComponent } from './components/round-details/round-details.component';
+import { RoundEditComponent } from './components/round-edit/round-edit.component';
+import { TrainingEditComponent } from './components/training-edit/training-edit.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +49,21 @@ import { DownloadedCaffCardComponent } from './components/downloaded-caff-card/d
     CaffCardComponent,
     CommentComponent,
     CaffCardMinimalComponent,
-    DownloadedCaffCardComponent
+    DownloadedCaffCardComponent,
+    BowsComponent,
+    BowEditComponent,
+    BowNewComponent,
+    BowDetailsComponent,
+    ProfilesComponent,
+    ProfileEditComponent,
+    TrainingsComponent,
+    TrainingAddComponent,
+    TrainingDetailsComponent,
+    RoundsComponent,
+    RoundAddComponent,
+    RoundDetailsComponent,
+    RoundEditComponent,
+    TrainingEditComponent
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,8 @@ import {UploadCaffComponent} from "./components/upload-caff/upload-caff.componen
 import {DetailsCaffComponent} from "./components/details-caff/details-caff.component";
 import {DetailsProfileComponent} from "./components/details-profile/details-profile.component";
 import {AuthUserGuard} from "./guards/auth-user.guard";
+import {BowsComponent} from "./components/bows/bows.component";
+import {TrainingsComponent} from "./components/trainings/trainings.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -17,6 +19,8 @@ const routes: Routes = [
   {path: 'caffs', component: CaffsComponent,canActivate:[AuthUserGuard]},
   {path: 'my-caffs', component: MyCaffsComponent},
   {path: 'upload-caff', component: UploadCaffComponent},
+  {path: 'bows', component: BowsComponent},
+  {path: 'trainings', component: TrainingsComponent},
   { path: 'details-caff/:id', component: DetailsCaffComponent },
   { path: 'details-profile/:id', component: DetailsProfileComponent },
   {path: '', redirectTo: 'home', pathMatch: 'full'}
