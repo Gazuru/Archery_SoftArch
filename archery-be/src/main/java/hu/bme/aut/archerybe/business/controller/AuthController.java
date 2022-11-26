@@ -3,6 +3,7 @@ package hu.bme.aut.archerybe.business.controller;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javax.validation.Valid;
 
 import hu.bme.aut.archerybe.config.jwt.JwtUtils;
 import hu.bme.aut.archerybe.config.services.UserDetailsImpl;
@@ -13,7 +14,6 @@ import hu.bme.aut.archerybe.datamodel.entity.User;
 import hu.bme.aut.archerybe.datamodel.entity.enums.Role;
 import hu.bme.aut.archerybe.datamodel.repository.UserRepository;
 import hu.bme.aut.archerybe.datamodel.response.JwtResponse;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

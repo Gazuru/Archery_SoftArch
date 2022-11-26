@@ -1,6 +1,6 @@
 package hu.bme.aut.archerybe.datamodel.dto;
 
-import jakarta.validation.constraints.NotBlank;
+import javax.validation.constraints.NotBlank;
 
 public record LoginRequest(@NotBlank String username, @NotBlank String password) {
 }

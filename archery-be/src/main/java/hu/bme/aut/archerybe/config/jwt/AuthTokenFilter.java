@@ -1,12 +1,12 @@
 package hu.bme.aut.archerybe.config.jwt;
 
 import java.io.IOException;
+
+import hu.bme.aut.archerybe.config.services.UserDetailsServiceImpl;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import hu.bme.aut.archerybe.config.services.UserDetailsServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

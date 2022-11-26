@@ -1,11 +1,11 @@
 package hu.bme.aut.archerybe.datamodel.entity;
 
 import java.io.Serializable;
-import javax.persistence.Convert;
-import javax.persistence.Entity;
 
 import hu.bme.aut.archerybe.datamodel.entity.converter.BowTypeConverter;
 import hu.bme.aut.archerybe.datamodel.entity.enums.BowType;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
 
