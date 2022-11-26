@@ -26,13 +26,16 @@ import { BowDetailsComponent } from './components/bow-details/bow-details.compon
 import { ProfilesComponent } from './components/profiles/profiles.component';
 import { ProfileEditComponent } from './components/profile-edit/profile-edit.component';
 import { TrainingsComponent } from './components/trainings/trainings.component';
-import { TrainingAddComponent } from './components/training-add/training-add.component';
 import { TrainingDetailsComponent } from './components/training-details/training-details.component';
 import { RoundsComponent } from './components/rounds/rounds.component';
 import { RoundAddComponent } from './components/round-add/round-add.component';
 import { RoundDetailsComponent } from './components/round-details/round-details.component';
 import { RoundEditComponent } from './components/round-edit/round-edit.component';
 import { TrainingEditComponent } from './components/training-edit/training-edit.component';
+import { BowRowComponent } from './components/bow-row/bow-row.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { TrainingRowComponent } from './components/training-row/training-row.component';
+import { TrainingNewComponent } from './components/training-new/training-new.component';
 
 @NgModule({
   declarations: [
@@ -57,20 +60,23 @@ import { TrainingEditComponent } from './components/training-edit/training-edit.
     ProfilesComponent,
     ProfileEditComponent,
     TrainingsComponent,
-    TrainingAddComponent,
     TrainingDetailsComponent,
     RoundsComponent,
     RoundAddComponent,
     RoundDetailsComponent,
     RoundEditComponent,
-    TrainingEditComponent
+    TrainingEditComponent,
+    BowRowComponent,
+    TrainingRowComponent,
+    TrainingNewComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

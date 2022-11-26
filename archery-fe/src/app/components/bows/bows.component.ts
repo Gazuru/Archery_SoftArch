@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-bows',
@@ -6,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bows.component.css']
 })
 export class BowsComponent implements OnInit {
+  faPlus = faPlus;
 
   constructor() { }
 

@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bow-details.component.css']
 })
 export class BowDetailsComponent implements OnInit {
-
+  bow:any;
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  deleteBow() {
+
+  }
 }

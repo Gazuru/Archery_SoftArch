@@ -1,1 +1,24 @@
-<p>bow-details works!</p>
+<div class="m-2">
+  <h2>Bow details</h2>
+  <div class="rounded bg-dark text-white p-2 my-2 d-flex flex-column">
+    <div class="mb-3">
+      <h3 class="m-0">Name</h3>
+      <a>ij 1</a>
+    </div>
+    <div class="mb-3">
+      <h3 class="m-0">Type</h3>
+      <a>ij tipus 3</a>
+    </div>
+    <div class="mb-3">
+      <h3 class="m-0">Description</h3>
+      <a>leiras</a>
+    </div>
+
+    <div class="d-flex justify-content-between">
+      <button class="btn edit-button btn-lg w-50 me-3" [routerLink]="['/bow-edit',bow.id]">Edit</button>
+      <button class="btn delete-button btn-lg w-50 ms-3" (click)="deleteBow()">Delete</button>
+    </div>
+  </div>
+
+
+</div>
