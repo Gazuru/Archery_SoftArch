@@ -17,4 +17,9 @@ public class Training extends BaseEntity {
     @DocumentReference
     private Set<Round> rounds;
 
+    @DocumentReference(lazy = true)
+    private User user;
+
+    private boolean isPrivate;
+
 }

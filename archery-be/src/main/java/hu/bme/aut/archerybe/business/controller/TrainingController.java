@@ -5,12 +5,10 @@ import java.util.Set;
 import java.util.UUID;
 
 import hu.bme.aut.archerybe.business.service.RoundService;
-import hu.bme.aut.archerybe.business.service.StatisticsService;
 import hu.bme.aut.archerybe.business.service.TrainingService;
 import hu.bme.aut.archerybe.datamodel.dto.RoundDto;
 import hu.bme.aut.archerybe.datamodel.dto.TrainingDto;
 import hu.bme.aut.archerybe.datamodel.entity.Round;
-import hu.bme.aut.archerybe.datamodel.entity.Statistics;
 import hu.bme.aut.archerybe.datamodel.entity.Training;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +19,6 @@ import org.springframework.web.bind.annotation.*;
 public class TrainingController {
 
     private final TrainingService trainingService;
-
-    private final StatisticsService statisticsService;
 
     private final RoundService roundService;
 
@@ -42,7 +38,7 @@ public class TrainingController {
     }
 
     @PutMapping("/training/{id}")
-    public Training updateTraining(@PathVariable UUID id, @RequestBody TrainingDto trainingDto){
+    public Training updateTraining(@PathVariable UUID id, @RequestBody TrainingDto trainingDto) {
         return trainingService.updateTraining(id, trainingDto);
     }
 
@@ -51,18 +47,13 @@ public class TrainingController {
         trainingService.deleteTraining(id);
     }
 
-    @GetMapping("/training/{id}/statistics")
-    public Statistics getStatisticsForTraining(@PathVariable UUID id){
-        return statisticsService.getStatisticsForTraining(id);
-    }
-
     @GetMapping("/training/{id}/rounds")
-    public Set<Round> getRoundsOfTraining(@PathVariable UUID id){
+    public Set<Round> getRoundsOfTraining(@PathVariable UUID id) {
         return roundService.getRoundsOfTraining(id);
     }
 
     @PostMapping("/training/{id}/rounds")
-    public Round createRoundForTraining(@PathVariable UUID id, @RequestBody RoundDto roundDto){
+    public Round createRoundForTraining(@PathVariable UUID id, @RequestBody RoundDto roundDto) {
         return roundService.createRoundForTraining(id, roundDto);
     }
 }
