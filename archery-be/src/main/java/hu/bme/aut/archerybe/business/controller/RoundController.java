@@ -5,6 +5,7 @@ import java.util.UUID;
 import hu.bme.aut.archerybe.business.service.RoundService;
 import hu.bme.aut.archerybe.datamodel.dto.RoundDto;
 import hu.bme.aut.archerybe.datamodel.entity.Round;
+import hu.bme.aut.archerybe.datamodel.response.RoundResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,12 +17,12 @@ public class RoundController {
     private final RoundService roundService;
 
     @GetMapping("/round/{roundId}")
-    public Round getRound(@PathVariable UUID roundId){
+    public RoundResponse getRound(@PathVariable UUID roundId){
         return roundService.getRound(roundId);
     }
 
     @PutMapping("/round/{roundId}")
-    public Round updateRound(@PathVariable UUID roundId, @RequestBody RoundDto roundDto){
+    public RoundResponse updateRound(@PathVariable UUID roundId, @RequestBody RoundDto roundDto){
         return roundService.updateRound(roundId, roundDto);
     }
 
