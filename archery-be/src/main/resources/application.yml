@@ -4,6 +4,7 @@ spring:
       uri: mongodb+srv://archery:dARcTJYHRXfBEPHi@cluster0.bnnzxz6.mongodb.net/?retryWrites=true&w=majority
       database: archery
       uuid-representation: standard
+      auto-index-creation: true
   security:
     user:
       password: password

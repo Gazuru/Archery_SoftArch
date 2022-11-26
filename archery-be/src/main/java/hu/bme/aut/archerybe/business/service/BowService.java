@@ -6,7 +6,7 @@ import java.util.UUID;
 import hu.bme.aut.archerybe.datamodel.ArcheryException;
 import hu.bme.aut.archerybe.datamodel.dto.BowDto;
 import hu.bme.aut.archerybe.datamodel.entity.Bow;
-import hu.bme.aut.archerybe.datamodel.entity.enums.BowType;
+import hu.bme.aut.archerybe.datamodel.enums.BowType;
 import hu.bme.aut.archerybe.datamodel.repository.BowRepository;
 import hu.bme.aut.archerybe.datamodel.response.BowResponse;
 import lombok.RequiredArgsConstructor;

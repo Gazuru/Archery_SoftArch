@@ -2,7 +2,7 @@ package hu.bme.aut.archerybe.datamodel.entity;
 
 import java.io.Serializable;
 
-import hu.bme.aut.archerybe.datamodel.entity.enums.BowType;
+import hu.bme.aut.archerybe.datamodel.enums.BowType;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;

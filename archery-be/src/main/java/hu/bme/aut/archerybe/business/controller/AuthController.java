@@ -11,7 +11,7 @@ import hu.bme.aut.archerybe.datamodel.dto.LoginRequest;
 import hu.bme.aut.archerybe.datamodel.dto.SignupRequest;
 import hu.bme.aut.archerybe.datamodel.entity.Authority;
 import hu.bme.aut.archerybe.datamodel.entity.User;
-import hu.bme.aut.archerybe.datamodel.entity.enums.Role;
+import hu.bme.aut.archerybe.datamodel.enums.Role;
 import hu.bme.aut.archerybe.datamodel.repository.UserRepository;
 import hu.bme.aut.archerybe.datamodel.response.JwtResponse;
 import hu.bme.aut.archerybe.datamodel.response.MessageResponse;

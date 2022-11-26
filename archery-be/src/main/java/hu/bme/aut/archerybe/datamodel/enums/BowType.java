@@ -1,4 +1,4 @@
-package hu.bme.aut.archerybe.datamodel.entity.enums;
+package hu.bme.aut.archerybe.datamodel.enums;
 
 public enum BowType {
     TRADITIONAL("traditional"),

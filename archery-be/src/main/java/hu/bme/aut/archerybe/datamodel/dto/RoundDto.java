@@ -1,5 +1,8 @@
 package hu.bme.aut.archerybe.datamodel.dto;
 
-public record RoundDto(String training) {
+public record RoundDto(
+        Integer score,
+        Integer roundNumber
+) {
 
 }

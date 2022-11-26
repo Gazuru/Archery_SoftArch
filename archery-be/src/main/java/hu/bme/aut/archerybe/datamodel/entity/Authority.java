@@ -1,6 +1,6 @@
 package hu.bme.aut.archerybe.datamodel.entity;
 
-import hu.bme.aut.archerybe.datamodel.entity.enums.Role;
+import hu.bme.aut.archerybe.datamodel.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
