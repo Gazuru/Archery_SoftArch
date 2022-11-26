@@ -6,7 +6,9 @@ import java.util.UUID;
 import hu.bme.aut.archerybe.datamodel.ArcheryException;
 import hu.bme.aut.archerybe.datamodel.dto.BowDto;
 import hu.bme.aut.archerybe.datamodel.entity.Bow;
+import hu.bme.aut.archerybe.datamodel.entity.enums.BowType;
 import hu.bme.aut.archerybe.datamodel.repository.BowRepository;
+import hu.bme.aut.archerybe.datamodel.response.BowResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +18,12 @@ public class BowService {
 
     private final BowRepository bowRepository;
 
-    public List<Bow> getBows() {
-        return bowRepository.findAll();
+    public List<BowResponse> getBows() {
+        return bowRepository.findAll().stream().map(this::toResponse).toList();
     }
 
-    public Bow getBow(UUID id) {
-        return getBowById(id);
+    public BowResponse getBow(UUID id) {
+        return toResponse(getBowById(id));
     }
 
     private Bow getBowById(UUID id) {
@@ -29,15 +31,21 @@ public class BowService {
                 () -> new ArcheryException("Bow not found by id: " + id));
     }
 
-    public Bow createBow(BowDto bowDto) {
+    public BowResponse createBow(BowDto bowDto) {
         var bow = new Bow();
-        /* set attributes in bow based on dto */
-        return bowRepository.save(bow);
+        bow.setBowType(BowType.fromValue(bowDto.type()));
+        bow.setName(bowDto.name());
+        bow.setDescription(bowDto.description());
+        return toResponse(bowRepository.save(bow));
     }
 
     public void deleteBow(UUID id) {
         if (bowRepository.existsById(id)) {
             bowRepository.deleteById(id);
         }
+    }
+
+    private BowResponse toResponse(Bow bow) {
+        return new BowResponse(bow.getId(), bow.getName(), bow.getBowType().toString(), bow.getDescription());
     }
 }

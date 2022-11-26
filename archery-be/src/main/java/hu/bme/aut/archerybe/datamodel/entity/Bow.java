@@ -12,5 +12,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "bows")
 public class Bow extends BaseEntity implements Serializable {
 
+    private String name;
+
     private BowType bowType;
+
+    private String description;
 }

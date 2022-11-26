@@ -14,6 +14,7 @@ import hu.bme.aut.archerybe.datamodel.entity.User;
 import hu.bme.aut.archerybe.datamodel.entity.enums.Role;
 import hu.bme.aut.archerybe.datamodel.repository.UserRepository;
 import hu.bme.aut.archerybe.datamodel.response.JwtResponse;
+import hu.bme.aut.archerybe.datamodel.response.MessageResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -64,11 +65,12 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<String> registerUser(@Valid @RequestBody SignupRequest signupRequest) {
+    public ResponseEntity<MessageResponse> registerUser(@Valid @RequestBody SignupRequest signupRequest) {
         if (userRepository.existsByUsername(signupRequest.username())) {
-            return new ResponseEntity<>("Error: Username is already taken!", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new MessageResponse("Error: Username is already taken!"),
+                    HttpStatus.BAD_REQUEST);
         } else if (userRepository.existsByEmail(signupRequest.email())) {
-            return new ResponseEntity<>("Error: Email is already in use!", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new MessageResponse("Error: Email is already in use!"), HttpStatus.BAD_REQUEST);
         }
 
         User user = new User(
@@ -94,6 +96,6 @@ public class AuthController {
         user.setAuthorities(authorities);
         userRepository.save(user);
 
-        return new ResponseEntity<>("User registered successfully!", HttpStatus.OK);
+        return new ResponseEntity<>(new MessageResponse("User registered successfully!"), HttpStatus.OK);
     }
 }

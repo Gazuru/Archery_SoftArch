@@ -32,7 +32,6 @@ public class User extends BaseEntity {
     @Size(max = 120)
     private String password;
 
-    @DocumentReference
     Set<Authority> authorities = new HashSet<>();
 
     @DocumentReference

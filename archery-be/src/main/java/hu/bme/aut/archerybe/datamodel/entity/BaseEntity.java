@@ -8,8 +8,8 @@ import org.springframework.data.annotation.Id;
 
 @Getter
 @Setter
-public class BaseEntity {
+public abstract class BaseEntity {
 
     @Id
-    private UUID id;
+    protected UUID id;
 }
