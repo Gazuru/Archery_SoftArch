@@ -1,21 +1,20 @@
 package hu.bme.aut.archerybe.datamodel.entity;
 
 import java.util.Set;
-import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
-@Entity
+@Document(collection = "trainings")
 @Getter
 @Setter
 public class Training extends BaseEntity {
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "statistics_id")
     private Statistics statistics;
 
-    @OneToMany(mappedBy = "training")
+    @DocumentReference
     private Set<Round> rounds;
 
 }
