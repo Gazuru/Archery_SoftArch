@@ -7,6 +7,7 @@
       <div class="form-group">
         <label for="name">Name</label>
         <input
+          [ngModel]="bow.name"
           formControlName="name"
           id="name"
           type="text"
@@ -22,6 +23,7 @@
       <div class="form-group">
         <label for="type">Type</label>
         <select
+          [ngModel]="bow.type"
           class="form-control"
           formControlName="type"
           id="type">
@@ -38,6 +40,7 @@
       <div class="form-group">
         <label for="description">Description</label>
         <textarea
+          [ngModel]="bow.description"
           formControlName="description"
           id="description"
           rows="7"

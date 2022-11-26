@@ -16,6 +16,7 @@ import {TrainingNewComponent} from "./components/training-new/training-new.compo
 import {TrainingDetailsComponent} from "./components/training-details/training-details.component";
 import {BowDetailsComponent} from "./components/bow-details/bow-details.component";
 import {BowEditComponent} from "./components/bow-edit/bow-edit.component";
+import {TrainingEditComponent} from "./components/training-edit/training-edit.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -32,6 +33,7 @@ const routes: Routes = [
 
   {path: 'trainings', component: TrainingsComponent},
   {path: 'training-new', component: TrainingNewComponent},
+  {path: 'training-edit', component: TrainingEditComponent},
   {path: 'training-details', component: TrainingDetailsComponent},
 
   { path: 'details-caff/:id', component: DetailsCaffComponent },

@@ -36,6 +36,7 @@ import { BowRowComponent } from './components/bow-row/bow-row.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TrainingRowComponent } from './components/training-row/training-row.component';
 import { TrainingNewComponent } from './components/training-new/training-new.component';
+import { RoundRowComponent } from './components/round-row/round-row.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { TrainingNewComponent } from './components/training-new/training-new.com
     TrainingEditComponent,
     BowRowComponent,
     TrainingRowComponent,
-    TrainingNewComponent
+    TrainingNewComponent,
+    RoundRowComponent
   ],
   imports: [
     BrowserModule,

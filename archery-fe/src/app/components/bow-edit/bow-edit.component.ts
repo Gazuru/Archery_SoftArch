@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {BowService} from "../../services/bow.service";
+import {BowResponse} from "../../models/bow-response";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-bow-edit',
@@ -7,8 +10,9 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./bow-edit.component.css']
 })
 export class BowEditComponent implements OnInit {
+  types=["traditional","hunting_recurve","olympic_recurve","compound"];
+  bow:BowResponse=new BowResponse();
 
-  types=["X","Y","Z"];
 
   descriptionMinLength: number = 3;
   nameMinLength: number = 3;
@@ -18,9 +22,15 @@ export class BowEditComponent implements OnInit {
     type: new FormControl('', [Validators.required])
   });
 
-  constructor() { }
+  private sub: any;
+  constructor(private bowService:BowService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.sub = this.route.params.subscribe(params => {
+      this.bowService.getBow(params['id']).subscribe(
+        (data)=>this.bow=data
+      );
+    });
   }
 
   get f() {
@@ -29,5 +39,6 @@ export class BowEditComponent implements OnInit {
 
   submit() {
     console.log(this.myForm.get('name')?.value+"__"+this.myForm.get('description')?.value+"__"+this.myForm.get('type')?.value);
+    this.bowService.putBow(this.myForm,this.bow.id);
   }
 }
