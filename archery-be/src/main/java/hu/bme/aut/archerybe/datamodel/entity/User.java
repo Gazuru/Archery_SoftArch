@@ -2,18 +2,17 @@ package hu.bme.aut.archerybe.datamodel.entity;
 
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
-@Entity
+@Document(collection = "users")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -32,7 +31,7 @@ public class User extends BaseEntity {
     @Size(max = 120)
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @DocumentReference
     Set<Authority> authorities = new HashSet<>();
 
     public User(String username, String email, String password) {
