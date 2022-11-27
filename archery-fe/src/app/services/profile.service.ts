@@ -31,9 +31,7 @@ export class ProfileService {
     };
 
     this.http.post<any>(API_URL + "user/" + userId, request)
-      .subscribe(res => {
-        console.log(res);
-      }, null, () => {
+      .subscribe(null, null, () => {
         this.router.navigate(["/profiles"]);
       });
   }

@@ -42,7 +42,6 @@ export class ProfileComponent implements OnInit {
       this.statisticsService.getUserStatistics(params['id']).subscribe(
         data => {
           this.statistics = data;
-          console.log(this.profile.role);
         }
       )
     });

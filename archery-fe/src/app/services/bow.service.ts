@@ -40,9 +40,7 @@ export class BowService {
     };
 
     this.http.post<BowResponse>(API_URL + "bows", request)
-      .subscribe(res => {
-        console.log(res);
-      }, null, () => {
+      .subscribe(null, null, () => {
         this.router.navigate(["/bows"]);
       });
   }
@@ -55,9 +53,7 @@ export class BowService {
     };
 
     this.http.put<BowResponse>(API_URL + "bow/" + id, request)
-      .subscribe(res => {
-        console.log(res);
-      }, null, () => {
+      .subscribe(null, null, () => {
         this.router.navigate(["/bows"]);
       });
   }

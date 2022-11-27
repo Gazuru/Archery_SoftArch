@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {TrainingService} from "../../services/training.service";
 import {TrainingResponse} from "../../models/training-response";
 import {faTrashCan, faWrench} from "@fortawesome/free-solid-svg-icons";
+import {TokenStorageService} from "../../services/token-storage.service";
 
 @Component({
   selector: 'app-round-row',
@@ -22,14 +23,17 @@ export class RoundRowComponent implements OnInit {
     score: new FormControl('', [Validators.required, Validators.min(0), Validators.max(this.maxRoundPoints)])
   });
 
-  private sub: any;
+  public userOwned: boolean = false;
+  public showAdmin: boolean = false;
 
-  constructor(private roundService: RoundService, private trainingService: TrainingService) {
+  constructor(private roundService: RoundService, private trainingService: TrainingService, private tokenStorageService: TokenStorageService) {
   }
 
   ngOnInit(): void {
     this.trainingService.getTraining(this.round.trainingId).subscribe(data => {
       this.training = data;
+      this.userOwned = this.tokenStorageService.getUserId() === data.user;
+      this.showAdmin = this.tokenStorageService.isAdmin();
     }, null, () => {
       this.maxRoundPoints = this.training.maxPoints * this.training.shotsPerRound;
       this.myForm = new FormGroup({
@@ -38,7 +42,6 @@ export class RoundRowComponent implements OnInit {
 
     });
   }
-
 
   get f() {
     return this.myForm.controls;

@@ -9,6 +9,7 @@ import {StatisticsResponse} from "../../models/statistics-response";
 import {StatisticsService} from "../../services/statistics.service";
 import {BowService} from "../../services/bow.service";
 import {BowResponse} from "../../models/bow-response";
+import {TokenStorageService} from "../../services/token-storage.service";
 
 @Component({
   selector: 'app-training-details',
@@ -20,22 +21,26 @@ export class TrainingDetailsComponent implements OnInit {
   rounds: RoundResponse[] = [];
   disabled = false;
   statistics: StatisticsResponse = new StatisticsResponse();
-  bow:BowResponse=new BowResponse();
+  bow: BowResponse = new BowResponse();
 
   maxRoundPoints = 0;
   myForm = new FormGroup({
     score: new FormControl('', [Validators.required, Validators.min(0), Validators.max(this.maxRoundPoints)])
   });
 
-  constructor(private trainingService: TrainingService, private roundService: RoundService, private route: ActivatedRoute, private statisticsService: StatisticsService,private bowService:BowService) {
+  constructor(private trainingService: TrainingService, private roundService: RoundService, private route: ActivatedRoute, private statisticsService: StatisticsService, private bowService: BowService, private tokenStorageService: TokenStorageService) {
   }
 
   private sub: any;
+  public userOwned: boolean = false;
+  public showAdmin: boolean = false;
 
   ngOnInit(): void {
     this.sub = this.route.params.subscribe(params => {
       this.trainingService.getTraining(params['id']).subscribe(data => {
         this.training = data;
+        this.userOwned = this.tokenStorageService.getUserId() === data.user;
+        this.showAdmin = this.tokenStorageService.isAdmin();
       }, null, () => {
         this.statisticsService.getStatisticsById(this.training.statistics).subscribe(data => {
           this.statistics = data;
@@ -51,7 +56,9 @@ export class TrainingDetailsComponent implements OnInit {
           }
         );
         this.bowService.getBow(this.training.bow).subscribe(
-          data=>{this.bow=data;}
+          data => {
+            this.bow = data;
+          }
         )
       });
     });

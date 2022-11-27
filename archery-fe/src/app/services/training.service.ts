@@ -56,9 +56,7 @@ export class TrainingService {
     };
 
     this.http.post<TrainingResponse>(API_URL + "trainings", request)
-      .subscribe(res => {
-        console.log(res);
-      }, null, () => {
+      .subscribe(null, null, () => {
         this.router.navigate(["/trainings"]);
       });
   }
@@ -76,9 +74,7 @@ export class TrainingService {
       board: form.get('board')?.value
     };
     this.http.put<TrainingResponse>(API_URL + "training/" + id, request)
-      .subscribe(res => {
-        console.log(res);
-      }, null, () => {
+      .subscribe(null, null, () => {
         this.router.navigate(["/trainings"]);
       });
   }

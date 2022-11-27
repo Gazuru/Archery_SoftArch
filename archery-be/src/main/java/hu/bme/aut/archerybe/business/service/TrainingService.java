@@ -51,7 +51,11 @@ public class TrainingService {
             return trainingRepository.findAll().stream().map(this::toResponse).toList();
         } else {
             if (Objects.nonNull(userId)) {
-                return trainingRepository.findAllByIsPrivateIsFalseAndUserId(userId).stream().map(this::toResponse).toList();
+                if (!userId.equals(user.getId())) {
+                    return trainingRepository.findAllByIsPrivateIsFalseAndUserId(userId).stream().map(this::toResponse).toList();
+                } else {
+                    return trainingRepository.findAllByUserId(userId).stream().map(this::toResponse).toList();
+                }
             }
             return trainingRepository.findAllByIsPrivateIsFalseOrUserId(user.getId()).stream().map(this::toResponse).toList();
         }

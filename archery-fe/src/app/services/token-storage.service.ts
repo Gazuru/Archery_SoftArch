@@ -37,4 +37,13 @@ export class TokenStorageService {
 
     return {};
   }
+
+  public getUserId(): any {
+    return this.getUser().id;
+  }
+
+  public isAdmin(): boolean {
+    return this.getUser().roles.includes('ROLE_ADMIN');
+  }
+
 }
