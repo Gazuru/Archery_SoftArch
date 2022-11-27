@@ -25,8 +25,8 @@ const routes: Routes = [
 
   {path: 'trainings', component: TrainingsComponent},
   {path: 'training-new', component: TrainingNewComponent},
-  {path: 'training-edit', component: TrainingEditComponent},
-  {path: 'training-details', component: TrainingDetailsComponent},
+  {path: 'training-edit/:id', component: TrainingEditComponent},
+  {path: 'training-details/:id', component: TrainingDetailsComponent},
 
   {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];

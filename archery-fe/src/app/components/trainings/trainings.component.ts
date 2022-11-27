@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import {TrainingResponse} from "../../models/training-response";
+import {TrainingService} from "../../services/training.service";
 
 @Component({
   selector: 'app-trainings',
@@ -8,9 +10,16 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 })
 export class TrainingsComponent implements OnInit {
   faPlus = faPlus;
-  constructor() { }
+  trainings:TrainingResponse[]=[];
+
+  constructor(private trainingService:TrainingService) { }
 
   ngOnInit(): void {
+    this.trainingService.getTrainings().subscribe(
+      data => {
+        this.trainings = data;
+      }
+    );
   }
 
 }
