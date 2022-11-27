@@ -29,6 +29,8 @@ public class TrainingService {
 
     private final UserRepository userRepository;
 
+    private final BowService bowService;
+
     @Lazy
     private final StatisticsService statisticsService;
 
@@ -83,8 +85,14 @@ public class TrainingService {
         training.setMaxPoints(trainingDto.maxPoints());
         training.setBoard(trainingDto.board());
         training.setDescription(trainingDto.description());
+        training.setPrivate(training.isPrivate());
+        training.setBow(bowService.getBowById(trainingDto.bow()));
 
         training = trainingRepository.save(training);
+
+        var user = training.getUser();
+        user.getTrainings().add(training);
+        userRepository.save(user);
 
         statisticsService.updateStatisticsForTrainingAndUser(training);
         return training;
@@ -101,7 +109,8 @@ public class TrainingService {
                 training.getDistance(),
                 training.getMaxPoints(),
                 training.getBoard(),
-                training.getDescription());
+                training.getDescription(),
+                training.getBow().getId());
     }
 
     private TrainingResponse saveToResponse(TrainingDto trainingDto, Training training) {

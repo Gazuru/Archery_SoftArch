@@ -26,7 +26,7 @@ public class BowService {
         return toResponse(getBowById(id));
     }
 
-    private Bow getBowById(UUID id) {
+    public Bow getBowById(UUID id) {
         return bowRepository.findById(id).orElseThrow(
                 () -> new ArcheryException("Bow not found by id: " + id));
     }

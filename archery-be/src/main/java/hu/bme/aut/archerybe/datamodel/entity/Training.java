@@ -38,4 +38,6 @@ public class Training extends BaseEntity {
 
     private String description;
 
+    private Bow bow;
+
 }

@@ -13,6 +13,7 @@ public record TrainingResponse(
         Integer distance,
         Integer maxPoints,
         String board,
-        String description
+        String description,
+        UUID bow
 ) {
 }

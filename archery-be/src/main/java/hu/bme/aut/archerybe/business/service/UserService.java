@@ -4,21 +4,25 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+import hu.bme.aut.archerybe.config.services.UserDetailsImpl;
 import hu.bme.aut.archerybe.datamodel.ArcheryException;
 import hu.bme.aut.archerybe.datamodel.dto.UserRoleRequest;
 import hu.bme.aut.archerybe.datamodel.entity.Authority;
 import hu.bme.aut.archerybe.datamodel.entity.Statistics;
-import hu.bme.aut.archerybe.datamodel.entity.Training;
 import hu.bme.aut.archerybe.datamodel.entity.User;
 import hu.bme.aut.archerybe.datamodel.enums.Role;
 import hu.bme.aut.archerybe.datamodel.repository.StatisticsRepository;
 import hu.bme.aut.archerybe.datamodel.repository.UserRepository;
 import hu.bme.aut.archerybe.datamodel.response.UserResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class UserService {
 
     private final UserRepository userRepository;
@@ -43,20 +47,25 @@ public class UserService {
     public UserResponse updateRole(UUID userId, UserRoleRequest userRoleRequest) {
         User user = getUserById(userId);
 
-        var authority = new Authority();
-        authority.setRole(Role.fromValue(userRoleRequest.role()));
-
+        var authority = new Authority(Role.fromValue(userRoleRequest.role()));
         user.setAuthority(authority);
 
-        return toResponse(user);
+        var newAuthority = UserDetailsImpl.mapToGrantedAuthority(authority);
+
+        SecurityContextHolder.getContext()
+                .setAuthentication(
+                        new UsernamePasswordAuthenticationToken(
+                                SecurityContextHolder.getContext().getAuthentication().getPrincipal(),
+                                SecurityContextHolder.getContext().getAuthentication().getCredentials(), newAuthority));
+
+        return toResponse(userRepository.save(user));
     }
 
     private UserResponse toResponse(User user) {
         return new UserResponse(user.getId(),
                 user.getUsername(),
                 user.getEmail(),
-                user.getAuthority().getRole().toString(),
-                user.getTrainings().stream().map(Training::getId).toList());
+                user.getAuthority().getRole().toString());
     }
 
     public List<UserResponse> getUsers() {
