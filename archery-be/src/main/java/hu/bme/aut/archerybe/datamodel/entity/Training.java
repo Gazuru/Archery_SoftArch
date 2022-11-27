@@ -1,5 +1,6 @@
 package hu.bme.aut.archerybe.datamodel.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import hu.bme.aut.archerybe.datamodel.enums.Location;
@@ -16,7 +17,7 @@ public class Training extends BaseEntity {
     private Statistics statistics;
 
     @DocumentReference
-    private Set<Round> rounds;
+    private Set<Round> rounds = new HashSet<>();
 
     @DocumentReference(lazy = true)
     private User user;
