@@ -18,7 +18,8 @@ export class TrainingService {
   }
 
   getTrainings(): Observable<TrainingResponse[]> {
-    return this.http.get<TrainingResponse[]>(API_URL + 'trainings');
+    return this.http.get<TrainingResponse[]>(API_URL + 'trainings'
+    );
   }
 
 //TODO
