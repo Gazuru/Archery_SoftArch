@@ -23,7 +23,7 @@ public class RoundService {
     private final TrainingService trainingService;
 
     private final StatisticsService statisticsService;
-    
+
     private final TrainingRepository trainingRepository;
 
     public Set<RoundResponse> getRoundsOfTraining(UUID trainingId) {
@@ -52,7 +52,9 @@ public class RoundService {
 
     public void deleteRound(UUID roundId) {
         if (roundRepository.existsById(roundId)) {
+            var training = getRoundById(roundId).getTraining();
             roundRepository.deleteById(roundId);
+            statisticsService.updateStatisticsForTrainingAndUser(training);
         }
     }
 

@@ -65,7 +65,9 @@ public class TrainingService {
 
     public void deleteTraining(UUID id) {
         if (trainingRepository.existsById(id)) {
+            var user = getTrainingById(id).getUser();
             trainingRepository.deleteById(id);
+            statisticsService.updateUserStatistics(user);
         }
     }
 
