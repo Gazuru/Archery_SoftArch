@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import hu.bme.aut.archerybe.config.services.UserDetailsImpl;
 import hu.bme.aut.archerybe.datamodel.ArcheryException;
 import hu.bme.aut.archerybe.datamodel.dto.TrainingDto;
 import hu.bme.aut.archerybe.datamodel.entity.Round;
@@ -12,8 +13,10 @@ import hu.bme.aut.archerybe.datamodel.entity.Training;
 import hu.bme.aut.archerybe.datamodel.enums.Location;
 import hu.bme.aut.archerybe.datamodel.repository.StatisticsRepository;
 import hu.bme.aut.archerybe.datamodel.repository.TrainingRepository;
+import hu.bme.aut.archerybe.datamodel.repository.UserRepository;
 import hu.bme.aut.archerybe.datamodel.response.TrainingResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,6 +26,8 @@ public class TrainingService {
     private final TrainingRepository trainingRepository;
 
     private final StatisticsRepository statisticsRepository;
+
+    private final UserRepository userRepository;
 
     public List<TrainingResponse> getTrainings() {
         return trainingRepository.findAll().stream().map(this::toResponse).toList();
@@ -41,6 +46,12 @@ public class TrainingService {
         var training = new Training();
         var statistics = statisticsRepository.save(new Statistics());
         training.setStatistics(statistics);
+
+        var principal = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        var currentUser = userRepository.findByUsername(principal.getUsername()).orElseThrow(
+                () -> new ArcheryException("User not found by current user's username: " + principal.getUsername()));
+
+        training.setUser(currentUser);
 
         return saveToResponse(trainingDto, training);
     }
