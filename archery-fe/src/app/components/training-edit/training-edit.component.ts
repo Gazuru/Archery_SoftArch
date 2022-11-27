@@ -49,4 +49,17 @@ export class TrainingEditComponent implements OnInit {
   deleteTraining(){
 
   }
+
+  getDisplayNameForValue(value: string): string {
+    switch (value) {
+      case "indoors": {
+        return "Indoors";
+      }
+      case "outdoors": {
+        return "Outdoors";
+      }
+      default:
+        return "Not found";
+    }
+  }
 }

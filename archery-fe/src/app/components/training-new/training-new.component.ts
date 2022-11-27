@@ -33,6 +33,20 @@ export class TrainingNewComponent implements OnInit {
   }
 
   submit() {
-   this.trainingService.postTraining(this.myForm);
+    this.trainingService.postTraining(this.myForm);
+  }
+
+
+  getDisplayNameForValue(value: string): string {
+    switch (value) {
+      case "indoors": {
+        return "Indoors";
+      }
+      case "outdoors": {
+        return "Outdoors";
+      }
+      default:
+        return "Not found";
+    }
   }
 }

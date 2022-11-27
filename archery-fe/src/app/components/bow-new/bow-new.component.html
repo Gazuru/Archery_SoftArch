@@ -13,7 +13,8 @@
           class="form-control">
         <div *ngIf="f['name'].touched && f['name'].invalid" class="alert alert-danger mt-2">
           <div *ngIf="f['name'].errors && f['name'].errors['required']" class="">Name is required.</div>
-          <div *ngIf="f['name'].errors && f['name'].errors['minlength']" class="">Name should be at least {{nameMinLength}}
+          <div *ngIf="f['name'].errors && f['name'].errors['minlength']" class="">Name should be at
+            least {{nameMinLength}}
             character.
           </div>
         </div>
@@ -26,7 +27,7 @@
           formControlName="type"
           id="type">
           <option *ngFor="let type of types" [ngValue]="type">
-            {{ type }}
+            {{ getDisplayNameForValue(type) }}
           </option>
         </select>
         <div *ngIf="f['type'].touched && f['type'].invalid" class="alert alert-danger mt-2">

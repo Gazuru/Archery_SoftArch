@@ -28,7 +28,7 @@
           formControlName="type"
           id="type">
           <option *ngFor="let type of types" [ngValue]="type">
-            {{ type }}
+            {{ getDisplayNameForValue(type) }}
           </option>
         </select>
         <div *ngIf="f['type'].touched && f['type'].invalid" class="alert alert-danger mt-2">

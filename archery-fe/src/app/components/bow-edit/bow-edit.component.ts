@@ -41,4 +41,23 @@ export class BowEditComponent implements OnInit {
     console.log(this.myForm.get('name')?.value+"__"+this.myForm.get('description')?.value+"__"+this.myForm.get('type')?.value);
     this.bowService.putBow(this.myForm,this.bow.id);
   }
+
+  getDisplayNameForValue(value: string): string {
+    switch (value) {
+      case "traditional": {
+        return "Traditional";
+      }
+      case "hunting_recurve": {
+        return "Hunting recurve";
+      }
+      case "olympic_recurve": {
+        return "Olympic recurve";
+      }
+      case "compound": {
+        return "Compound";
+      }
+      default:
+        return "Not found";
+    }
+  }
 }

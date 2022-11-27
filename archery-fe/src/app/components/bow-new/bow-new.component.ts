@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {BowResponse} from "../../models/bow-response";
 import {BowService} from "../../services/bow.service";
-import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-bow-new',
@@ -12,6 +10,7 @@ import {ActivatedRoute} from "@angular/router";
 export class BowNewComponent implements OnInit {
   types=["traditional","hunting_recurve","olympic_recurve","compound"];
 
+
   descriptionMinLength: number = 3;
   nameMinLength: number = 3;
   myForm = new FormGroup({
@@ -20,7 +19,8 @@ export class BowNewComponent implements OnInit {
     type: new FormControl('', [Validators.required])
   });
 
-  constructor(private bowService:BowService) { }
+  constructor(private bowService: BowService) {
+  }
 
   ngOnInit(): void {
   }
@@ -31,5 +31,24 @@ export class BowNewComponent implements OnInit {
 
   submit() {
     this.bowService.postBow(this.myForm);
+  }
+
+  getDisplayNameForValue(value: string): string {
+    switch (value) {
+      case "traditional": {
+        return "Traditional";
+      }
+      case "hunting_recurve": {
+        return "Hunting recurve";
+      }
+      case "olympic_recurve": {
+        return "Olympic recurve";
+      }
+      case "compound": {
+        return "Compound";
+      }
+      default:
+        return "Not found";
+    }
   }
 }

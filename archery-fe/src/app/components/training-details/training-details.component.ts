@@ -56,5 +56,18 @@ export class TrainingDetailsComponent implements OnInit {
     this.roundService.postRound(this.myForm, this.training.id);
   }
 
+  getDisplayNameForValue(value: string): string {
+    switch (value) {
+      case "indoors": {
+        return "Indoors";
+      }
+      case "outdoors": {
+        return "Outdoors";
+      }
+      default:
+        return "Not found";
+    }
+  }
+
 
 }

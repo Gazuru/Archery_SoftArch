@@ -14,7 +14,8 @@
           class="form-control">
         <div *ngIf="f['name'].touched && f['name'].invalid" class="alert alert-danger mt-2">
           <div *ngIf="f['name'].errors && f['name'].errors['required']" class="">Name is required.</div>
-          <div *ngIf="f['name'].errors && f['name'].errors['minlength']" class="">Name should be at least {{nameMinLength}}
+          <div *ngIf="f['name'].errors && f['name'].errors['minlength']" class="">Name should be at
+            least {{nameMinLength}}
             characters.
           </div>
         </div>
@@ -28,7 +29,7 @@
           formControlName="location"
           id="location">
           <option *ngFor="let location of locations" [ngValue]="location">
-            {{ location }}
+            {{ getDisplayNameForValue(location) }}
           </option>
         </select>
         <div *ngIf="f['location'].touched && f['location'].invalid" class="alert alert-danger mt-2">
@@ -45,7 +46,9 @@
           type="number"
           class="form-control">
         <div *ngIf="f['shotsPerRound'].touched && f['shotsPerRound'].invalid" class="alert alert-danger mt-2">
-          <div *ngIf="f['shotsPerRound'].errors && f['shotsPerRound'].errors['required']" class="">Shots per round is required.</div>
+          <div *ngIf="f['shotsPerRound'].errors && f['shotsPerRound'].errors['required']" class="">Shots per round is
+            required.
+          </div>
           <div *ngIf="f['shotsPerRound'].errors && f['shotsPerRound'].errors['min']" class="">Should be at least 3
           </div>
         </div>
@@ -91,7 +94,8 @@
           class="form-control">
         <div *ngIf="f['board'].touched && f['board'].invalid" class="alert alert-danger mt-2">
           <div *ngIf="f['board'].errors && f['board'].errors['required']" class="">Board is required.</div>
-          <div *ngIf="f['board'].errors && f['board'].errors['minlength']" class="">Board should be at least 5 characters.
+          <div *ngIf="f['board'].errors && f['board'].errors['minlength']" class="">Board should be at least 5
+            characters.
           </div>
         </div>
       </div>

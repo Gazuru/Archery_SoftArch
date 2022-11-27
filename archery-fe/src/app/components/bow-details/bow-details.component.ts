@@ -24,6 +24,25 @@ export class BowDetailsComponent implements OnInit {
 
   deleteBow() {
     this.bowService.deleteBow(this.bow.id);
-
   }
+
+  getDisplayNameForValue(value: string): string {
+    switch (value) {
+      case "traditional": {
+        return "Traditional";
+      }
+      case "hunting_recurve": {
+        return "Hunting recurve";
+      }
+      case "olympic_recurve": {
+        return "Olympic recurve";
+      }
+      case "compound": {
+        return "Compound";
+      }
+      default:
+        return "Not found";
+    }
+  }
+
 }
