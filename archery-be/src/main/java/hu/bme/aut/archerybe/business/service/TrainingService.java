@@ -16,6 +16,7 @@ import hu.bme.aut.archerybe.datamodel.repository.UserRepository;
 import hu.bme.aut.archerybe.datamodel.response.TrainingResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +40,19 @@ public class TrainingService {
             return trainingRepository.findAllByUserId(userId).stream().map(this::toResponse).toList();
         }
 
-        return trainingRepository.findAll().stream().map(this::toResponse).toList();
+        var authority =
+                SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().map(GrantedAuthority::getAuthority).toList().get(0);
+        var username =
+                ((UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        var user =
+                userRepository.findByUsername(username)
+                        .orElseThrow(() -> new ArcheryException("User cannot be found by username: " + username));
+
+        if (authority.equals("ROLE_ADMIN")) {
+            return trainingRepository.findAll().stream().map(this::toResponse).toList();
+        } else {
+            return trainingRepository.findAllByIsPrivateIsFalseOrUserId(user.getId()).stream().map(this::toResponse).toList();
+        }
     }
 
     public TrainingResponse getTraining(UUID id) {
@@ -85,7 +98,7 @@ public class TrainingService {
         training.setMaxPoints(trainingDto.maxPoints());
         training.setBoard(trainingDto.board());
         training.setDescription(trainingDto.description());
-        training.setPrivate(training.isPrivate());
+        training.setPrivate(trainingDto.isPrivate());
         training.setBow(bowService.getBowById(trainingDto.bow()));
 
         training = trainingRepository.save(training);

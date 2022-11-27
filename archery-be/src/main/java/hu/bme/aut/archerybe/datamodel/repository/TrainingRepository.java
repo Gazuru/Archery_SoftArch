@@ -12,4 +12,6 @@ public interface TrainingRepository extends MongoRepository<Training, UUID> {
 
     Set<Training> findAllByUserId(UUID uuid);
 
+    Set<Training> findAllByIsPrivateIsFalseOrUserId(UUID userId);
+
 }
