@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
 public interface RoundRepository extends MongoRepository<Round, UUID> {
     Set<Round> findAllByTrainingId(UUID trainingId);
 
-    Integer findFirstByOrderByRoundNumberDesc();
+    Round findFirstByOrderByRoundNumberDesc();
 }
