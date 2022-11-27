@@ -1,3 +1,3 @@
-export interface ProfileResponse{
+export class ProfileResponse {
 
 }
