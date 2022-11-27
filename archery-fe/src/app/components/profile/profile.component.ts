@@ -6,6 +6,7 @@ import {ProfileResponse} from "../../models/profile-response";
 import {TrainingResponse} from "../../models/training-response";
 import {TrainingService} from "../../services/training.service";
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -14,9 +15,11 @@ import {TrainingService} from "../../services/training.service";
 export class ProfileComponent implements OnInit {
   private sub: any;
 
+
   profile: ProfileResponse = new ProfileResponse();
-  trainings: TrainingResponse[]=[];
-  constructor(private token: TokenStorageService, private route: ActivatedRoute, private profileService: ProfileService,private trainingService:TrainingService) {
+  trainings: TrainingResponse[] = [];
+
+  constructor(private token: TokenStorageService, private route: ActivatedRoute, private profileService: ProfileService, private trainingService: TrainingService) {
   }
 
   ngOnInit(): void {
@@ -24,10 +27,10 @@ export class ProfileComponent implements OnInit {
       this.profileService.getProfile(params['id']).subscribe(
         data => {
           this.profile = data;
-        },null,()=>{
+        }, null, () => {
           this.trainingService.getTrainingsByUserId(this.profile.id).subscribe(
-            data=>{
-              this.trainings=data;
+            data => {
+              this.trainings = data;
             }
           )
         }

@@ -14,7 +14,6 @@ import {BowEditComponent} from './components/bow-edit/bow-edit.component';
 import {BowNewComponent} from './components/bow-new/bow-new.component';
 import {BowDetailsComponent} from './components/bow-details/bow-details.component';
 import {ProfilesComponent} from './components/profiles/profiles.component';
-import {ProfileEditComponent} from './components/profile-edit/profile-edit.component';
 import {TrainingsComponent} from './components/trainings/trainings.component';
 import {TrainingDetailsComponent} from './components/training-details/training-details.component';
 import {RoundsComponent} from './components/rounds/rounds.component';
@@ -39,7 +38,6 @@ import {RoundRowComponent} from './components/round-row/round-row.component';
     BowNewComponent,
     BowDetailsComponent,
     ProfilesComponent,
-    ProfileEditComponent,
     TrainingsComponent,
     TrainingDetailsComponent,
     RoundsComponent,
