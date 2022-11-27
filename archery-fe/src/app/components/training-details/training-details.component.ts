@@ -17,14 +17,14 @@ export class TrainingDetailsComponent implements OnInit {
   training: TrainingResponse = new TrainingResponse();
   rounds: RoundResponse[] = [];
   disabled = false;
-  statistics:StatisticsResponse=new StatisticsResponse();
+  statistics: StatisticsResponse = new StatisticsResponse();
 
   maxRoundPoints = 0;
   myForm = new FormGroup({
     score: new FormControl('', [Validators.required, Validators.min(0), Validators.max(this.maxRoundPoints)])
   });
 
-  constructor(private trainingService: TrainingService, private roundService: RoundService, private route: ActivatedRoute,private statisticsService:StatisticsService) {
+  constructor(private trainingService: TrainingService, private roundService: RoundService, private route: ActivatedRoute, private statisticsService: StatisticsService) {
   }
 
   private sub: any;
@@ -34,8 +34,8 @@ export class TrainingDetailsComponent implements OnInit {
       this.trainingService.getTraining(params['id']).subscribe(data => {
         this.training = data;
       }, null, () => {
-        this.statisticsService.getStatisticsById(this.training.statistics).subscribe(data=>{
-          this.statistics=data;
+        this.statisticsService.getStatisticsById(this.training.statistics).subscribe(data => {
+          this.statistics = data;
         });
 
         this.maxRoundPoints = this.training.maxPoints * this.training.shotsPerRound;
@@ -61,6 +61,7 @@ export class TrainingDetailsComponent implements OnInit {
 
   addRound() {
     this.roundService.postRound(this.myForm, this.training.id);
+    window.location.reload();
   }
 
   getDisplayNameForValue(value: string): string {

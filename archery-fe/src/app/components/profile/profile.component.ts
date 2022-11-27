@@ -5,6 +5,8 @@ import {ProfileService} from "../../services/profile.service";
 import {ProfileResponse} from "../../models/profile-response";
 import {TrainingResponse} from "../../models/training-response";
 import {TrainingService} from "../../services/training.service";
+import {StatisticsResponse} from "../../models/statistics-response";
+import {StatisticsService} from "../../services/statistics.service";
 
 
 @Component({
@@ -19,7 +21,9 @@ export class ProfileComponent implements OnInit {
   profile: ProfileResponse = new ProfileResponse();
   trainings: TrainingResponse[] = [];
 
-  constructor(private token: TokenStorageService, private route: ActivatedRoute, private profileService: ProfileService, private trainingService: TrainingService) {
+  statistics:StatisticsResponse=new StatisticsResponse();
+
+  constructor(private token: TokenStorageService, private route: ActivatedRoute, private profileService: ProfileService, private trainingService: TrainingService, private statisticsService:StatisticsService) {
   }
 
   ngOnInit(): void {
@@ -35,6 +39,11 @@ export class ProfileComponent implements OnInit {
           )
         }
       );
+      this.statisticsService.getUserStatistics(params['id']).subscribe(
+        data=>{
+          this.statistics=data;
+        }
+      )
     });
   }
 
