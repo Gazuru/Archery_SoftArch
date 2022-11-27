@@ -32,7 +32,7 @@ public class RoundService {
         round.setTraining(training);
 
         var highestRoundNumber = roundRepository.findFirstByOrderByRoundNumberDesc();
-        var currentRoundNumber = Objects.isNull(highestRoundNumber) ? 0 : highestRoundNumber + 1;
+        var currentRoundNumber = Objects.isNull(highestRoundNumber) ? 1 : highestRoundNumber + 1;
         round.setRoundNumber(currentRoundNumber);
 
         return saveToResponse(roundDto, round);
