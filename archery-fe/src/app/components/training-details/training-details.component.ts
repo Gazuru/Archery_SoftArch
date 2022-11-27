@@ -5,6 +5,8 @@ import {TrainingService} from "../../services/training.service";
 import {RoundResponse} from "../../models/round-response";
 import {RoundService} from "../../services/round.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {StatisticsResponse} from "../../models/statistics-response";
+import {StatisticsService} from "../../services/statistics.service";
 
 @Component({
   selector: 'app-training-details',
@@ -15,13 +17,14 @@ export class TrainingDetailsComponent implements OnInit {
   training: TrainingResponse = new TrainingResponse();
   rounds: RoundResponse[] = [];
   disabled = false;
+  statistics:StatisticsResponse=new StatisticsResponse();
 
   maxRoundPoints = 0;
   myForm = new FormGroup({
     score: new FormControl('', [Validators.required, Validators.min(0), Validators.max(this.maxRoundPoints)])
   });
 
-  constructor(private trainingService: TrainingService, private roundService: RoundService, private route: ActivatedRoute) {
+  constructor(private trainingService: TrainingService, private roundService: RoundService, private route: ActivatedRoute,private statisticsService:StatisticsService) {
   }
 
   private sub: any;
@@ -31,6 +34,10 @@ export class TrainingDetailsComponent implements OnInit {
       this.trainingService.getTraining(params['id']).subscribe(data => {
         this.training = data;
       }, null, () => {
+        this.statisticsService.getStatisticsById(this.training.statistics).subscribe(data=>{
+          this.statistics=data;
+        });
+
         this.maxRoundPoints = this.training.maxPoints * this.training.shotsPerRound;
         this.myForm = new FormGroup({
           score: new FormControl('', [Validators.required, Validators.min(0), Validators.max(this.maxRoundPoints)])
