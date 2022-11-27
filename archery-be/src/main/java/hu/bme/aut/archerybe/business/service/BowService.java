@@ -32,11 +32,11 @@ public class BowService {
     }
 
     public BowResponse createBow(BowDto bowDto) {
-        var bow = new Bow();
-        bow.setBowType(BowType.fromValue(bowDto.type()));
-        bow.setName(bowDto.name());
-        bow.setDescription(bowDto.description());
-        return toResponse(bowRepository.save(bow));
+        return saveToResponse(bowDto, new Bow());
+    }
+
+    public BowResponse updateBow(UUID id, BowDto bowDto) {
+        return saveToResponse(bowDto, getBowById(id));
     }
 
     public void deleteBow(UUID id) {
@@ -47,5 +47,17 @@ public class BowService {
 
     private BowResponse toResponse(Bow bow) {
         return new BowResponse(bow.getId(), bow.getName(), bow.getBowType().toString(), bow.getDescription());
+    }
+
+    private Bow saveFromDto(BowDto bowDto, Bow bow) {
+        bow.setDescription(bowDto.description());
+        bow.setName(bowDto.name());
+        bow.setBowType(BowType.fromValue(bowDto.type()));
+
+        return bowRepository.save(bow);
+    }
+
+    private BowResponse saveToResponse(BowDto bowDto, Bow bow) {
+        return toResponse(saveFromDto(bowDto, bow));
     }
 }

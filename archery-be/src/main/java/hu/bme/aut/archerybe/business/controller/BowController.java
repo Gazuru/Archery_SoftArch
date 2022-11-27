@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("${api.path}")
@@ -22,14 +23,14 @@ public class BowController {
     }
 
     @PostMapping("/bows")
-    public BowResponse createBow(@RequestBody BowDto bowDto) {
+    public BowResponse createBow(@Valid @RequestBody BowDto bowDto) {
         return bowService.createBow(bowDto);
     }
 
-    /*@PutMapping("/bow/{id}")
-    public BowResponse updateBow(@PathVariable UUID id, @RequestBody BowDto bowDto) {
+    @PutMapping("/bow/{id}")
+    public BowResponse updateBow(@PathVariable UUID id, @Valid @RequestBody BowDto bowDto) {
         return bowService.updateBow(id, bowDto);
-    }*/
+    }
 
     @GetMapping("/bow/{id}")
     public BowResponse getBow(@PathVariable UUID id) {
