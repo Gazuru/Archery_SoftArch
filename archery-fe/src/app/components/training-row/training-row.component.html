@@ -1,9 +1,10 @@
-<div class="rounded bg-red text-white p-2 my-2 d-flex justify-content-between" [routerLink]="['/training-details', training.id]">
-  <div>
+<div class="rounded bg-red text-white p-2 my-2 d-flex justify-content-between"
+     [routerLink]="['/training-details', training.id]">
+  <div class="text-start no-overflow me-2">
     <h3>Name</h3>
     <a>{{training.name}}</a>
   </div>
-  <div class="text-end no-overflow">
+  <div class="text-end no-overflow ms-2">
     <h3>Description</h3>
     <span class="">{{training.description}}</span>
   </div>

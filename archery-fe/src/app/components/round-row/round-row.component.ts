@@ -47,10 +47,12 @@ export class RoundRowComponent implements OnInit {
 
   editRound() {
     this.roundService.putRound(this.myForm, this.round.trainingId, this.round.id);
+    window.location.reload();
   }
 
   deleteRound() {
     this.roundService.deleteRound(this.round.id, this.training.id);
+    window.location.reload();
   }
 
 }

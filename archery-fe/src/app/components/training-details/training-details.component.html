@@ -38,16 +38,16 @@
 
   <div class="rounded bg-dark text-white p-2 my-2 d-flex flex-column">
     <div class="mb-3">
-      <h3 class="m-0">Accuracy average (%)</h3>
-      <a>{{statistics.accuracyPercentageAverage}}</a>
+      <h3 class="m-0">Accuracy average</h3>
+      <a>{{statistics.accuracyPercentageAverage.toFixed(2)}} %</a>
     </div>
     <div class="mb-3">
-      <h3 class="m-0">Highest accuracy (%)</h3>
-      <a>{{statistics.highestAccuracyPercentage}}</a>
+      <h3 class="m-0">Highest accuracy</h3>
+      <a>{{statistics.highestAccuracyPercentage.toFixed(2)}} %</a>
     </div>
-    <div class="mb-3">
-      <h3 class="m-0">Lowest accuracy (%)</h3>
-      <a>{{statistics.lowestAccuracyPercentage}}</a>
+    <div class="">
+      <h3 class="m-0">Lowest accuracy</h3>
+      <a>{{statistics.lowestAccuracyPercentage.toFixed(2)}} %</a>
     </div>
   </div>
 
