@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {TokenStorageService} from "./token-storage.service";
 import {TrainingResponse} from "../models/training-response";
 import {TrainingRequest} from "../models/training-request";
+import {Router} from "@angular/router";
 
 const API_URL = 'http://localhost:8080/api/archery/';
 
@@ -13,7 +14,7 @@ const API_URL = 'http://localhost:8080/api/archery/';
 })
 export class TrainingService {
 
-  constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) {
+  constructor(private http: HttpClient, private tokenStorageService: TokenStorageService,private router:Router) {
   }
 
   getTrainings(): Observable<TrainingResponse[]> {
@@ -26,7 +27,9 @@ export class TrainingService {
 
   deleteTraining(id: string) {
     this.http.delete(API_URL + "training/" + id)
-      .subscribe();
+      .subscribe(null,null,()=>{
+        this.router.navigate(["/trainings"]);
+      });
   }
 
   postTraining(form: FormGroup) {
@@ -43,6 +46,8 @@ export class TrainingService {
     this.http.post<TrainingResponse>(API_URL + "trainings", request)
       .subscribe(res => {
         console.log(res);
+      },null,()=>{
+        this.router.navigate(["/trainings"]);
       });
   }
 
@@ -56,9 +61,11 @@ export class TrainingService {
       location: form.get('location')?.value,
       board: form.get('board')?.value
     };
-    this.http.patch<TrainingResponse>(API_URL + "training/" + id, request)
+    this.http.put<TrainingResponse>(API_URL + "training/" + id, request)
       .subscribe(res => {
         console.log(res);
+      },null,()=>{
+        this.router.navigate(["/trainings"]);
       });
   }
 }

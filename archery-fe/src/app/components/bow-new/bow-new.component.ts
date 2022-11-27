@@ -30,7 +30,6 @@ export class BowNewComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.myForm.get('name')?.value+"__"+this.myForm.get('description')?.value+"__"+this.myForm.get('type')?.value);
     this.bowService.postBow(this.myForm);
   }
 }

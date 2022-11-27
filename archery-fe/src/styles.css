@@ -3,11 +3,11 @@
   margin: 10px;
 }
 
-.bg-red{
+.bg-red {
   background-color: #D90429;
 }
 
-.add-button{
+.add-button {
   height: 65px;
   width: 65px;
   border-radius: 20px;
@@ -18,28 +18,36 @@
   right: 1em;
 }
 
-.plus-icon{
+.plus-icon {
   font-size: 40px;
   color: white;
 }
 
 
-.delete-button{
+.delete-button {
   border-radius: 12px;
   background-color: #D90429;
   color: white;
 }
 
-.delete-button:focus-visible, .delete-button:hover, .delete-button:active{
+.delete-button:focus-visible, .delete-button:hover, .delete-button:active {
   background-color: #D90429;
 }
 
-.edit-button{
+.edit-button {
   border-radius: 12px;
   background-color: #8D99AE;
   color: white;
 }
 
-.edit-button:focus-visible, .edit-button:hover, .edit-button:active{
+.edit-button:focus-visible, .edit-button:hover, .edit-button:active {
   background-color: #8D99AE;
+}
+
+
+.no-overflow {
+  width: 50%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

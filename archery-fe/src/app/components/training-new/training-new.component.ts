@@ -33,7 +33,6 @@ export class TrainingNewComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.myForm.get('name')?.value + "__" + this.myForm.get('description')?.value + "__" + this.myForm.get('location')?.value);
-    this.trainingService.postTraining(this.myForm);
+   this.trainingService.postTraining(this.myForm);
   }
 }

@@ -43,8 +43,7 @@ export class TrainingEditComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.myForm.get('name')?.value + "__" + this.myForm.get('description')?.value + "__" + this.myForm.get('location')?.value);
-    this.trainingService.putTraining(this.myForm,this.training.id);
+   this.trainingService.putTraining(this.myForm,this.training.id);
   }
 
   deleteTraining(){

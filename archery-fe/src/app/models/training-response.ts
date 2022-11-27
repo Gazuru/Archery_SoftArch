@@ -9,6 +9,6 @@ export class TrainingResponse{
   maxPoints:number=0;
   location:string="";
   board:string="";
-  rounds:any;
-  statistics:any;
+  rounds:string[]=[];
+  statistics:string="";
 }
