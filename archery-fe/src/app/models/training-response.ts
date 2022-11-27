@@ -11,4 +11,5 @@ export class TrainingResponse{
   board:string="";
   rounds:string[]=[];
   statistics:string="";
+  bow:string="";
 }

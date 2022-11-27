@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ProfileResponse} from "../../models/profile-response";
 import {TokenStorageService} from "../../services/token-storage.service";
 import {ProfileService} from "../../services/profile.service";
-import {faWrench} from "@fortawesome/free-solid-svg-icons";
+import {faWrench,faCircleInfo} from "@fortawesome/free-solid-svg-icons";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -13,6 +13,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 export class ProfilesComponent implements OnInit {
   profiles: ProfileResponse[] = [];
   faWrench = faWrench;
+  faCircleInfo=faCircleInfo;
   roles = ["ROLE_ADMIN", "ROLE_USER"]
 
   myForm = new FormGroup({

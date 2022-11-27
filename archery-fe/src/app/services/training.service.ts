@@ -51,6 +51,7 @@ export class TrainingService {
       maxPoints: form.get('maxPoints')?.value,
       location: form.get('location')?.value,
       isPrivate: form.get('isPrivate')?.value,
+      bow: form.get('bow')?.value,
       board: form.get('board')?.value
     };
 
@@ -71,6 +72,7 @@ export class TrainingService {
       maxPoints: form.get('maxPoints')?.value,
       location: form.get('location')?.value,
       isPrivate: form.get('isPrivate')?.value,
+      bow: form.get('bow')?.value,
       board: form.get('board')?.value
     };
     this.http.put<TrainingResponse>(API_URL + "training/" + id, request)

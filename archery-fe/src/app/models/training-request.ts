@@ -7,4 +7,5 @@ export class TrainingRequest {
   location: string = "";
   board: string = "";
   isPrivate: string = "";
+  bow: string = "";
 }

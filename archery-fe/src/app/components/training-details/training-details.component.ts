@@ -7,6 +7,8 @@ import {RoundService} from "../../services/round.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {StatisticsResponse} from "../../models/statistics-response";
 import {StatisticsService} from "../../services/statistics.service";
+import {BowService} from "../../services/bow.service";
+import {BowResponse} from "../../models/bow-response";
 
 @Component({
   selector: 'app-training-details',
@@ -18,14 +20,14 @@ export class TrainingDetailsComponent implements OnInit {
   rounds: RoundResponse[] = [];
   disabled = false;
   statistics: StatisticsResponse = new StatisticsResponse();
-
+  bow:BowResponse=new BowResponse();
 
   maxRoundPoints = 0;
   myForm = new FormGroup({
     score: new FormControl('', [Validators.required, Validators.min(0), Validators.max(this.maxRoundPoints)])
   });
 
-  constructor(private trainingService: TrainingService, private roundService: RoundService, private route: ActivatedRoute, private statisticsService: StatisticsService) {
+  constructor(private trainingService: TrainingService, private roundService: RoundService, private route: ActivatedRoute, private statisticsService: StatisticsService,private bowService:BowService) {
   }
 
   private sub: any;
@@ -48,6 +50,9 @@ export class TrainingDetailsComponent implements OnInit {
             this.rounds = data;
           }
         );
+        this.bowService.getBow(this.training.bow).subscribe(
+          data=>{this.bow=data;}
+        )
       });
     });
   }

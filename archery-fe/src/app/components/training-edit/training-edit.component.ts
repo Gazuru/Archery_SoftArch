@@ -3,6 +3,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {TrainingService} from "../../services/training.service";
 import {ActivatedRoute} from "@angular/router";
 import {TrainingResponse} from "../../models/training-response";
+import {BowService} from "../../services/bow.service";
+import {BowResponse} from "../../models/bow-response";
 
 @Component({
   selector: 'app-training-edit',
@@ -13,6 +15,7 @@ export class TrainingEditComponent implements OnInit {
   locations = ["indoors", "outdoors"];
   isPrivates = ["true", "false"];
   training: TrainingResponse = new TrainingResponse();
+  bows: BowResponse[] = [];
 
   descriptionMinLength: number = 3;
   nameMinLength: number = 3;
@@ -24,18 +27,24 @@ export class TrainingEditComponent implements OnInit {
     maxPoints: new FormControl('', [Validators.required, Validators.min(10)]),
     location: new FormControl('', [Validators.required]),
     isPrivate: new FormControl('', [Validators.required]),
+    bow: new FormControl('', [Validators.required]),
     board: new FormControl('', [Validators.required, Validators.minLength(5)])
   });
 
   private sub: any;
 
-  constructor(private trainingService: TrainingService, private route: ActivatedRoute) {
+  constructor(private trainingService: TrainingService, private route: ActivatedRoute, private bowService: BowService) {
   }
 
   ngOnInit(): void {
     this.sub = this.route.params.subscribe(params => {
       this.trainingService.getTraining(params['id']).subscribe(
         (data) => this.training = data
+      );
+      this.bowService.getBows().subscribe(
+        data => {
+          this.bows = data;
+        }
       );
     });
   }

@@ -13,9 +13,10 @@
       <tr *ngFor="let profile of profiles">
         <td [routerLink]="['/profile',profile.id]">{{profile.username}}</td>
         <td>{{getDisplayNameForValue(profile.role)}}</td>
-        <td *ngIf="showAdmin">
-          <fa-icon class="icon" [icon]="faWrench" data-bs-toggle="modal" data-bs-target="#EditModal"
+        <td class="d-flex justify-content-end">
+          <fa-icon *ngIf="showAdmin" class="icon" [icon]="faWrench" data-bs-toggle="modal" data-bs-target="#EditModal"
                    (click)="setCurrentEditUser(profile.id)"></fa-icon>
+          <fa-icon class="icon ms-2" [icon]="faCircleInfo" [routerLink]="['/profile',profile.id]"></fa-icon>
         </td>
       </tr>
 

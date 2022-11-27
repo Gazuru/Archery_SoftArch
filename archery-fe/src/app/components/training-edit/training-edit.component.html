@@ -117,6 +117,21 @@
       </div>
 
       <div class="form-group mb-3">
+        <label for="bow">Bow</label>
+        <select
+          class="form-control"
+          formControlName="bow"
+          id="bow">
+          <option *ngFor="let bow of bows" [ngValue]="bow.id">
+            {{ bow.name }}
+          </option>
+        </select>
+        <div *ngIf="f['location'].touched && f['location'].invalid" class="alert alert-danger mt-2">
+          <div *ngIf="f['location'].errors && f['location'].errors['required']" class="">Location is required.</div>
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
         <label for="description">Description</label>
         <textarea
           [ngModel]="training.description"

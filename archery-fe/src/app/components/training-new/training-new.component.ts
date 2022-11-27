@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {TrainingService} from "../../services/training.service";
+import {BowResponse} from "../../models/bow-response";
+import {BowService} from "../../services/bow.service";
 
 @Component({
   selector: 'app-training-new',
@@ -10,6 +12,7 @@ import {TrainingService} from "../../services/training.service";
 export class TrainingNewComponent implements OnInit {
   locations = ["indoors", "outdoors"];
   isPrivates = ["true", "false"];
+  bows:BowResponse[]=[];
 
   descriptionMinLength: number = 3;
   nameMinLength: number = 3;
@@ -21,13 +24,19 @@ export class TrainingNewComponent implements OnInit {
     maxPoints: new FormControl('', [Validators.required, Validators.min(10)]),
     location: new FormControl('', [Validators.required]),
     isPrivate: new FormControl('', [Validators.required]),
+    bow: new FormControl('', [Validators.required]),
     board: new FormControl('', [Validators.required, Validators.minLength(5)])
   });
 
-  constructor(private trainingService: TrainingService) {
+  constructor(private trainingService: TrainingService,private bowService: BowService) {
   }
 
   ngOnInit(): void {
+    this.bowService.getBows().subscribe(
+      data=>{
+        this.bows=data;
+      }
+    );
   }
 
   get f() {
@@ -37,6 +46,7 @@ export class TrainingNewComponent implements OnInit {
   submit() {
     this.trainingService.postTraining(this.myForm);
   }
+
 
 
   getDisplayNameForValue(value: string): string {
