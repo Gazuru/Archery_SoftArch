@@ -46,7 +46,7 @@ public class UserService {
         var authority = new Authority();
         authority.setRole(Role.fromValue(userRoleRequest.role()));
 
-        user.getAuthorities().add(authority);
+        user.setAuthority(authority);
 
         return toResponse(user);
     }
@@ -55,7 +55,7 @@ public class UserService {
         return new UserResponse(user.getId(),
                 user.getUsername(),
                 user.getEmail(),
-                user.getAuthorities(),
+                user.getAuthority(),
                 user.getTrainings().stream().map(Training::getId).toList());
     }
 

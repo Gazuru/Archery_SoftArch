@@ -1,8 +1,6 @@
 package hu.bme.aut.archerybe.business.controller;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.validation.Valid;
 
 import hu.bme.aut.archerybe.config.jwt.JwtUtils;
@@ -78,22 +76,16 @@ public class AuthController {
                 signupRequest.email(),
                 passwordEncoder.encode(signupRequest.password()));
 
-        Set<String> strRoles = signupRequest.roles();
-        Set<Authority> authorities = new HashSet<>();
+        String strRole = signupRequest.role();
 
-        if (strRoles == null) {
-            authorities.add(new Authority(Role.ROLE_USER));
+        if (strRole == null) {
+            user.setAuthority(new Authority(Role.ROLE_USER));
+        } else if (strRole.equals("admin")) {
+            user.setAuthority(new Authority(Role.ROLE_ADMIN));
         } else {
-            strRoles.forEach(role -> {
-                if (role.equals("admin")) {
-                    authorities.add(new Authority(Role.ROLE_ADMIN));
-                } else {
-                    authorities.add(new Authority(Role.ROLE_USER));
-                }
-            });
+            user.setAuthority(new Authority(Role.ROLE_USER));
         }
-
-        user.setAuthorities(authorities);
+        
         userRepository.save(user);
 
         return new ResponseEntity<>(new MessageResponse("User registered successfully!"), HttpStatus.OK);

@@ -1,8 +1,6 @@
 package hu.bme.aut.archerybe.datamodel.entity;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -32,7 +30,7 @@ public class User extends BaseEntity {
     @Size(max = 120)
     private String password;
 
-    private Set<Authority> authorities = new HashSet<>();
+    private Authority authority;
 
     @DocumentReference
     private List<Training> trainings;
