@@ -35,6 +35,22 @@
       <button class="btn delete-button btn-lg w-50 ms-3" (click)="deleteTraining()">Delete</button>
     </div>
   </div>
+
+  <div class="rounded bg-dark text-white p-2 my-2 d-flex flex-column">
+    <div class="mb-3">
+      <h3 class="m-0">Accuracy average (%)</h3>
+      <a>{{statistics.accuracyPercentageAverage}}</a>
+    </div>
+    <div class="mb-3">
+      <h3 class="m-0">Highest accuracy (%)</h3>
+      <a>{{statistics.highestAccuracyPercentage}}</a>
+    </div>
+    <div class="mb-3">
+      <h3 class="m-0">Lowest accuracy (%)</h3>
+      <a>{{statistics.lowestAccuracyPercentage}}</a>
+    </div>
+  </div>
+
   <div class="rounded bg-dark text-white p-2 my-2 d-flex flex-column">
     <div class="mb-3 d-flex justify-content-between">
       <h3 class="m-0 align-self-center">Rounds</h3>
