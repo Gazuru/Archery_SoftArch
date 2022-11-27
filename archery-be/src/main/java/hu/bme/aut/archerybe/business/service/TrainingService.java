@@ -51,7 +51,7 @@ public class TrainingService {
             return trainingRepository.findAll().stream().map(this::toResponse).toList();
         } else {
             if (Objects.nonNull(userId)) {
-                return trainingRepository.findAllByIsPrivateIsFalseOrUserId(userId).stream().map(this::toResponse).toList();
+                return trainingRepository.findAllByIsPrivateIsFalseAndUserId(userId).stream().map(this::toResponse).toList();
             }
             return trainingRepository.findAllByIsPrivateIsFalseOrUserId(user.getId()).stream().map(this::toResponse).toList();
         }
