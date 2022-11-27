@@ -1,6 +1,7 @@
 package hu.bme.aut.archerybe.datamodel.repository;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 import hu.bme.aut.archerybe.datamodel.entity.BaseEntity;
@@ -39,6 +40,8 @@ public class CustomMongoRepositoryImpl<T extends BaseEntity> extends SimpleMongo
     }
 
     protected <S extends T> void generateId(S entity) {
-        entity.setId(UUID.randomUUID());
+        if (Objects.isNull(entity.getId())) {
+            entity.setId(UUID.randomUUID());
+        }
     }
 }
