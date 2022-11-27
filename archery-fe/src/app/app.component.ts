@@ -33,4 +33,11 @@ export class AppComponent implements OnInit {
     this.tokenStorageService.signOut();
     window.location.reload();
   }
+
+  ToggleNavBar() {
+    let element: HTMLElement = document.getElementsByClassName('navbar-toggler')[0] as HTMLElement;
+    if (element.getAttribute('aria-expanded') == 'true') {
+      element.click();
+    }
+  }
 }

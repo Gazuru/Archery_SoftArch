@@ -9,25 +9,25 @@
       <div class="navbar-collapse collapse" id="navbarColor01" style="">
         <ul *ngIf="isLoggedIn" class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" routerLink="/trainings">Trainings</a>
+            <a class="nav-link" routerLink="/trainings" (click)="ToggleNavBar()">Trainings</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/bows">Bows</a>
+            <a class="nav-link" routerLink="/bows" (click)="ToggleNavBar()">Bows</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/profiles">Profiles</a>
+            <a class="nav-link" routerLink="/profiles" (click)="ToggleNavBar()">Profiles</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/profile',userId]">Profile</a>
+            <a class="nav-link" [routerLink]="['/profile',userId]" (click)="ToggleNavBar()">Profile</a>
           </li>
         </ul>
 
         <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
           <li class="nav-item">
-            <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
+            <a href="/register" class="nav-link" routerLink="register" (click)="ToggleNavBar()">Sign Up</a>
           </li>
           <li class="nav-item">
-            <a href="/login" class="nav-link" routerLink="login">Login</a>
+            <a href="/login" class="nav-link" routerLink="login" (click)="ToggleNavBar()">Login</a>
           </li>
         </ul>
 

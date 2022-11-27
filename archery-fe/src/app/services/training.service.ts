@@ -14,12 +14,21 @@ const API_URL = 'http://localhost:8080/api/archery/';
 })
 export class TrainingService {
 
-  constructor(private http: HttpClient, private tokenStorageService: TokenStorageService,private router:Router) {
+  constructor(private http: HttpClient, private tokenStorageService: TokenStorageService, private router: Router) {
   }
 
   getTrainings(): Observable<TrainingResponse[]> {
     return this.http.get<TrainingResponse[]>(API_URL + 'trainings');
   }
+
+//TODO
+  getTrainingsByUserId(id: string): Observable<TrainingResponse[]> {
+    return this.http.get<TrainingResponse[]>(API_URL + 'trainings',
+      {
+        params: {userId: id}
+      });
+  }
+
 
   getTraining(id: string): Observable<TrainingResponse> {
     return this.http.get<TrainingResponse>(API_URL + 'training/' + id);
@@ -27,7 +36,7 @@ export class TrainingService {
 
   deleteTraining(id: string) {
     this.http.delete(API_URL + "training/" + id)
-      .subscribe(null,null,()=>{
+      .subscribe(null, null, () => {
         this.router.navigate(["/trainings"]);
       });
   }
@@ -46,7 +55,7 @@ export class TrainingService {
     this.http.post<TrainingResponse>(API_URL + "trainings", request)
       .subscribe(res => {
         console.log(res);
-      },null,()=>{
+      }, null, () => {
         this.router.navigate(["/trainings"]);
       });
   }
@@ -64,7 +73,7 @@ export class TrainingService {
     this.http.put<TrainingResponse>(API_URL + "training/" + id, request)
       .subscribe(res => {
         console.log(res);
-      },null,()=>{
+      }, null, () => {
         this.router.navigate(["/trainings"]);
       });
   }
