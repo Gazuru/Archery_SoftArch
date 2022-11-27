@@ -1,13 +1,13 @@
 package hu.bme.aut.archerybe.business.controller;
 
-import java.util.List;
-import java.util.UUID;
-
 import hu.bme.aut.archerybe.business.service.BowService;
 import hu.bme.aut.archerybe.datamodel.dto.BowDto;
 import hu.bme.aut.archerybe.datamodel.response.BowResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("${api.path}")
@@ -25,6 +25,11 @@ public class BowController {
     public BowResponse createBow(@RequestBody BowDto bowDto) {
         return bowService.createBow(bowDto);
     }
+
+    /*@PutMapping("/bow/{id}")
+    public BowResponse updateBow(@PathVariable UUID id, @RequestBody BowDto bowDto) {
+        return bowService.updateBow(id, bowDto);
+    }*/
 
     @GetMapping("/bow/{id}")
     public BowResponse getBow(@PathVariable UUID id) {

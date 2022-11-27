@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-bow-row',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bow-row.component.css']
 })
 export class BowRowComponent implements OnInit {
-  bow:any;
+  @Input() bow:any;
 
   constructor() { }
 

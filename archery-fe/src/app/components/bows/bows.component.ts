@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import {Component, OnInit} from '@angular/core';
+import {faPlus} from '@fortawesome/free-solid-svg-icons';
+import {BowService} from "../../services/bow.service";
+import {BowResponse} from "../../models/bow-response";
 
 
 @Component({
@@ -9,10 +11,17 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 })
 export class BowsComponent implements OnInit {
   faPlus = faPlus;
+  bows: BowResponse[] = [];
 
-  constructor() { }
+  constructor(private bowService: BowService) {
+  }
 
   ngOnInit(): void {
+    this.bowService.getBows().subscribe(
+      data => {
+        this.bows = data;
+      }
+    );
   }
 
 }

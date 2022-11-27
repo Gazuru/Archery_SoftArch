@@ -1,9 +1,6 @@
 <div class="m-2">
   <h2>My bows</h2>
-  <app-bow-row></app-bow-row>
-  <app-bow-row></app-bow-row>
-  <app-bow-row></app-bow-row>
-  <app-bow-row></app-bow-row>
+  <app-bow-row *ngFor="let bow of bows" [bow]="bow"></app-bow-row>
 
   <button class="add-button">
     <fa-icon class="plus-icon" [icon]="faPlus" [routerLink]="['/bow-new']"></fa-icon>
