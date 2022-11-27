@@ -42,10 +42,23 @@ export class ProfileComponent implements OnInit {
       this.statisticsService.getUserStatistics(params['id']).subscribe(
         data => {
           this.statistics = data;
-          console.log(this.profile.authority);
+          console.log(this.profile.role);
         }
       )
     });
+  }
+
+  getDisplayNameForValue(value: string): string {
+    switch (value) {
+      case "ROLE_ADMIN": {
+        return "Admin";
+      }
+      case "ROLE_USER": {
+        return "User";
+      }
+      default:
+        return "Not found";
+    }
   }
 
 }
