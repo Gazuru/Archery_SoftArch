@@ -21,6 +21,7 @@ public class RoundService {
 
     private final TrainingService trainingService;
 
+    private final StatisticsService statisticsService;
 
     public Set<RoundResponse> getRoundsOfTraining(UUID trainingId) {
         return roundRepository.findAllByTrainingId(trainingId).stream().map(this::toResponse).collect(Collectors.toSet());
@@ -59,8 +60,10 @@ public class RoundService {
 
     private Round saveFromDto(RoundDto roundDto, Round round) {
         round.setScore(roundDto.score());
+        round = roundRepository.save(round);
 
-        return roundRepository.save(round);
+        statisticsService.updateStatisticsForTrainingAndUser(round.getTraining());
+        return round;
     }
 
     private RoundResponse toResponse(Round round) {

@@ -32,10 +32,12 @@ public class User extends BaseEntity {
     @Size(max = 120)
     private String password;
 
-    Set<Authority> authorities = new HashSet<>();
+    private Set<Authority> authorities = new HashSet<>();
 
     @DocumentReference
-    List<Training> trainings;
+    private List<Training> trainings;
+
+    private Statistics statistics;
 
     public User(String username, String email, String password) {
         this.username = username;

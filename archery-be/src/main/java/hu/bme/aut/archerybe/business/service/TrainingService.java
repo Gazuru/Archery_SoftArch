@@ -1,6 +1,7 @@
 package hu.bme.aut.archerybe.business.service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -16,6 +17,7 @@ import hu.bme.aut.archerybe.datamodel.repository.TrainingRepository;
 import hu.bme.aut.archerybe.datamodel.repository.UserRepository;
 import hu.bme.aut.archerybe.datamodel.response.TrainingResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +31,14 @@ public class TrainingService {
 
     private final UserRepository userRepository;
 
-    public List<TrainingResponse> getTrainings() {
+    @Lazy
+    private final StatisticsService statisticsService;
+
+    public List<TrainingResponse> getTrainings(UUID userId) {
+        if (Objects.nonNull(userId)) {
+            return trainingRepository.findAllByUserId(userId).stream().map(this::toResponse).toList();
+        }
+
         return trainingRepository.findAll().stream().map(this::toResponse).toList();
     }
 
@@ -75,7 +84,10 @@ public class TrainingService {
         training.setBoard(trainingDto.board());
         training.setDescription(trainingDto.description());
 
-        return trainingRepository.save(training);
+        training = trainingRepository.save(training);
+
+        statisticsService.updateStatisticsForTrainingAndUser(training);
+        return training;
     }
 
     private TrainingResponse toResponse(Training training) {
@@ -95,5 +107,11 @@ public class TrainingService {
 
     private TrainingResponse saveToResponse(TrainingDto trainingDto, Training training) {
         return toResponse(saveFromDto(trainingDto, training));
+    }
+
+    public Statistics getStatisticsOfTraining(Training training) {
+        UUID id = training.getStatistics().getId();
+        return statisticsRepository.findById(id)
+                .orElseThrow(() -> new ArcheryException("Statistics not found by ID: " + id));
     }
 }

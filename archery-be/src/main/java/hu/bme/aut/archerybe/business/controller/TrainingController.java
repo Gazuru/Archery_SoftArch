@@ -24,8 +24,8 @@ public class TrainingController {
     private final RoundService roundService;
 
     @GetMapping("/trainings")
-    public List<TrainingResponse> getTrainings() {
-        return trainingService.getTrainings();
+    public List<TrainingResponse> getTrainings(@RequestParam UUID userId) {
+        return trainingService.getTrainings(userId);
     }
 
     @PostMapping("/trainings")
