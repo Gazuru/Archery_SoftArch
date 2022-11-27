@@ -1,5 +1,6 @@
 package hu.bme.aut.archerybe.business.service;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -56,5 +57,13 @@ public class UserService {
                 user.getEmail(),
                 user.getAuthorities(),
                 user.getTrainings().stream().map(Training::getId).toList());
+    }
+
+    public List<UserResponse> getUsers() {
+        return userRepository.findAll().stream().map(this::toResponse).toList();
+    }
+
+    public UserResponse getUser(UUID userId) {
+        return toResponse(getUserById(userId));
     }
 }
