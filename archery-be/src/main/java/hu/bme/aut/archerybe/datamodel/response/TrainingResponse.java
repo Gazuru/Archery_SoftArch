@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public record TrainingResponse(
         UUID id,
-        StatisticsResponse statistics,
+        UUID statistics,
         Set<UUID> rounds,
         UUID user,
         Boolean isPrivate,

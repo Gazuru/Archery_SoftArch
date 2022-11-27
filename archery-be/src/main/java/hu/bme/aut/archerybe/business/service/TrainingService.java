@@ -7,10 +7,11 @@ import java.util.stream.Collectors;
 import hu.bme.aut.archerybe.datamodel.ArcheryException;
 import hu.bme.aut.archerybe.datamodel.dto.TrainingDto;
 import hu.bme.aut.archerybe.datamodel.entity.Round;
+import hu.bme.aut.archerybe.datamodel.entity.Statistics;
 import hu.bme.aut.archerybe.datamodel.entity.Training;
 import hu.bme.aut.archerybe.datamodel.enums.Location;
+import hu.bme.aut.archerybe.datamodel.repository.StatisticsRepository;
 import hu.bme.aut.archerybe.datamodel.repository.TrainingRepository;
-import hu.bme.aut.archerybe.datamodel.response.StatisticsResponse;
 import hu.bme.aut.archerybe.datamodel.response.TrainingResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,8 @@ import org.springframework.stereotype.Service;
 public class TrainingService {
 
     private final TrainingRepository trainingRepository;
+
+    private final StatisticsRepository statisticsRepository;
 
     public List<TrainingResponse> getTrainings() {
         return trainingRepository.findAll().stream().map(this::toResponse).toList();
@@ -35,7 +38,11 @@ public class TrainingService {
     }
 
     public TrainingResponse createTraining(TrainingDto trainingDto) {
-        return saveToResponse(trainingDto, new Training());
+        var training = new Training();
+        var statistics = statisticsRepository.save(new Statistics());
+        training.setStatistics(statistics);
+
+        return saveToResponse(trainingDto, training);
     }
 
     public void deleteTraining(UUID id) {
@@ -62,7 +69,7 @@ public class TrainingService {
 
     private TrainingResponse toResponse(Training training) {
         return new TrainingResponse(training.getId(),
-                new StatisticsResponse(training.getStatistics().getDetails()),
+                training.getStatistics().getId(),
                 training.getRounds().stream().map(Round::getId).collect(Collectors.toSet()),
                 training.getUser().getId(),
                 training.isPrivate(),
