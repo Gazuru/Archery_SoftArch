@@ -3,12 +3,10 @@ package hu.bme.aut.archerybe.business.service;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import hu.bme.aut.archerybe.config.services.UserDetailsImpl;
 import hu.bme.aut.archerybe.datamodel.ArcheryException;
 import hu.bme.aut.archerybe.datamodel.dto.TrainingDto;
-import hu.bme.aut.archerybe.datamodel.entity.Round;
 import hu.bme.aut.archerybe.datamodel.entity.Statistics;
 import hu.bme.aut.archerybe.datamodel.entity.Training;
 import hu.bme.aut.archerybe.datamodel.enums.Location;
@@ -93,7 +91,6 @@ public class TrainingService {
     private TrainingResponse toResponse(Training training) {
         return new TrainingResponse(training.getId(),
                 training.getStatistics().getId(),
-                training.getRounds().stream().map(Round::getId).collect(Collectors.toSet()),
                 training.getUser().getId(),
                 training.isPrivate(),
                 training.getName(),

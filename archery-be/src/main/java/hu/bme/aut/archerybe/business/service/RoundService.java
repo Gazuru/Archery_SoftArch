@@ -9,6 +9,7 @@ import hu.bme.aut.archerybe.datamodel.ArcheryException;
 import hu.bme.aut.archerybe.datamodel.dto.RoundDto;
 import hu.bme.aut.archerybe.datamodel.entity.Round;
 import hu.bme.aut.archerybe.datamodel.repository.RoundRepository;
+import hu.bme.aut.archerybe.datamodel.repository.TrainingRepository;
 import hu.bme.aut.archerybe.datamodel.response.RoundResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,8 @@ public class RoundService {
     private final TrainingService trainingService;
 
     private final StatisticsService statisticsService;
+    
+    private final TrainingRepository trainingRepository;
 
     public Set<RoundResponse> getRoundsOfTraining(UUID trainingId) {
         return roundRepository.findAllByTrainingId(trainingId).stream().map(this::toResponse).collect(Collectors.toSet());
@@ -61,6 +64,8 @@ public class RoundService {
     private Round saveFromDto(RoundDto roundDto, Round round) {
         round.setScore(roundDto.score());
         round = roundRepository.save(round);
+        round.getTraining().getRounds().add(round);
+        trainingRepository.save(round.getTraining());
 
         statisticsService.updateStatisticsForTrainingAndUser(round.getTraining());
         return round;

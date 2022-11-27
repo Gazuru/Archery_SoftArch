@@ -1,12 +1,10 @@
 package hu.bme.aut.archerybe.datamodel.response;
 
-import java.util.Set;
 import java.util.UUID;
 
 public record TrainingResponse(
         UUID id,
         UUID statistics,
-        Set<UUID> rounds,
         UUID user,
         Boolean isPrivate,
         String name,

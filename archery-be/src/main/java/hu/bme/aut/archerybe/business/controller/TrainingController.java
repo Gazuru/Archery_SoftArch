@@ -1,5 +1,10 @@
 package hu.bme.aut.archerybe.business.controller;
 
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
+import javax.validation.Valid;
+
 import hu.bme.aut.archerybe.business.service.RoundService;
 import hu.bme.aut.archerybe.business.service.TrainingService;
 import hu.bme.aut.archerybe.datamodel.dto.RoundDto;
@@ -8,11 +13,6 @@ import hu.bme.aut.archerybe.datamodel.response.RoundResponse;
 import hu.bme.aut.archerybe.datamodel.response.TrainingResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("${api.path}")
