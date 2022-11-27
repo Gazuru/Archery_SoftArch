@@ -5,7 +5,6 @@ import java.util.UUID;
 import hu.bme.aut.archerybe.datamodel.ArcheryException;
 import hu.bme.aut.archerybe.datamodel.entity.Statistics;
 import hu.bme.aut.archerybe.datamodel.entity.User;
-import hu.bme.aut.archerybe.datamodel.enums.StatisticsType;
 import hu.bme.aut.archerybe.datamodel.repository.StatisticsRepository;
 import hu.bme.aut.archerybe.datamodel.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,12 +28,11 @@ public class UserService {
         return statisticsRepository.findById(id)
                 .orElseGet(() -> {
                     var statistic = new Statistics();
-                    statistic.setStatisticsType(StatisticsType.USER_SCOPE);
                     statistic = statisticsRepository.save(statistic);
 
                     user.setStatistics(statistic);
                     userRepository.save(user);
-                    
+
                     return statistic;
                 });
     }
