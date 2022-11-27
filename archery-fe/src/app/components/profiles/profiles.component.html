@@ -11,11 +11,11 @@
       </thead>
       <tbody>
       <tr *ngFor="let profile of profiles">
-        <td [routerLink]="['/profile',profile.id]">{{profile.name}}</td>
-        <td>{{getDisplayNameForValue(profile.role)}}</td>
+        <td [routerLink]="['/profile',profile.id]">{{profile.username}}</td>
+        <td>{{getDisplayNameForValue(profile.authority)}}</td>
         <td *ngIf="showAdmin">
           <fa-icon class="icon" [icon]="faWrench" data-bs-toggle="modal" data-bs-target="#EditModal"
-                   (click)="setCurrentEditUser(profile.id,profile.role)"></fa-icon>
+                   (click)="setCurrentEditUser(profile.id,profile.authority)"></fa-icon>
         </td>
       </tr>
 
@@ -52,8 +52,8 @@
                   {{ getDisplayNameForValue(role) }}
                 </option>
               </select>
-              <div *ngIf="f['score'].touched && f['score'].invalid" class="alert alert-danger mt-2">
-                <div *ngIf="f['score'].errors && f['score'].errors['required']" class="">Role is required.</div>
+              <div *ngIf="f['role'].touched && f['role'].invalid" class="alert alert-danger mt-2">
+                <div *ngIf="f['role'].errors && f['role'].errors['required']" class="">Role is required.</div>
               </div>
             </div>
 

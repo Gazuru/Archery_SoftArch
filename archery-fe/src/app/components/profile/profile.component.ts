@@ -21,9 +21,9 @@ export class ProfileComponent implements OnInit {
   profile: ProfileResponse = new ProfileResponse();
   trainings: TrainingResponse[] = [];
 
-  statistics:StatisticsResponse=new StatisticsResponse();
+  statistics: StatisticsResponse = new StatisticsResponse();
 
-  constructor(private token: TokenStorageService, private route: ActivatedRoute, private profileService: ProfileService, private trainingService: TrainingService, private statisticsService:StatisticsService) {
+  constructor(private token: TokenStorageService, private route: ActivatedRoute, private profileService: ProfileService, private trainingService: TrainingService, private statisticsService: StatisticsService) {
   }
 
   ngOnInit(): void {
@@ -40,8 +40,9 @@ export class ProfileComponent implements OnInit {
         }
       );
       this.statisticsService.getUserStatistics(params['id']).subscribe(
-        data=>{
-          this.statistics=data;
+        data => {
+          this.statistics = data;
+          console.log(this.profile.authority);
         }
       )
     });
