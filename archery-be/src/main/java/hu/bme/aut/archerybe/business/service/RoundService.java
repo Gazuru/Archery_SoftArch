@@ -1,5 +1,6 @@
 package hu.bme.aut.archerybe.business.service;
 
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -29,6 +30,11 @@ public class RoundService {
         var round = new Round();
         var training = trainingService.getTrainingById(trainingId);
         round.setTraining(training);
+
+        var highestRoundNumber = roundRepository.findFirstByOrderByRoundNumberDesc();
+        var currentRoundNumber = Objects.isNull(highestRoundNumber) ? 0 : highestRoundNumber + 1;
+        round.setRoundNumber(currentRoundNumber);
+
         return saveToResponse(roundDto, round);
     }
 
@@ -52,7 +58,6 @@ public class RoundService {
     }
 
     private Round saveFromDto(RoundDto roundDto, Round round) {
-        round.setRoundNumber(roundDto.roundNumber());
         round.setScore(roundDto.score());
 
         return roundRepository.save(round);
