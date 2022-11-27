@@ -20,11 +20,10 @@ export class ProfilesComponent implements OnInit {
   });
 
   currentEditUserId: string = "";
-  currentEditUserRole: string = "";
 
-  showAdmin=false;
+  showAdmin = false;
 
-  constructor(private token: TokenStorageService, private profileService: ProfileService,private tokenStorageService:TokenStorageService) {
+  constructor(private token: TokenStorageService, private profileService: ProfileService, private tokenStorageService: TokenStorageService) {
   }
 
   ngOnInit(): void {
@@ -42,7 +41,7 @@ export class ProfilesComponent implements OnInit {
   }
 
   editUserRole() {
-    this.profileService.postRole(this.myForm,this.currentEditUserId);
+    this.profileService.postRole(this.myForm, this.currentEditUserId);
   }
 
   getDisplayNameForValue(value: string): string {
@@ -58,8 +57,7 @@ export class ProfilesComponent implements OnInit {
     }
   }
 
-  setCurrentEditUser(id: string, role: string) {
+  setCurrentEditUser(id: string) {
     this.currentEditUserId = id;
-    this.currentEditUserRole = role;
   }
 }

@@ -15,7 +15,7 @@
         <td>{{getDisplayNameForValue(profile.role)}}</td>
         <td *ngIf="showAdmin">
           <fa-icon class="icon" [icon]="faWrench" data-bs-toggle="modal" data-bs-target="#EditModal"
-                   (click)="setCurrentEditUser(profile.id,profile.role)"></fa-icon>
+                   (click)="setCurrentEditUser(profile.id)"></fa-icon>
         </td>
       </tr>
 
@@ -32,7 +32,7 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="EditModalLabel">Edit round</h5>
+        <h5 class="modal-title" id="EditModalLabel">Edit role</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -48,7 +48,7 @@
                 class="form-control"
                 formControlName="role"
                 id="role">
-                <option *ngFor="let role of roles" [ngValue]="currentEditUserRole">
+                <option *ngFor="let role of roles" [ngValue]="role">
                   {{ getDisplayNameForValue(role) }}
                 </option>
               </select>
