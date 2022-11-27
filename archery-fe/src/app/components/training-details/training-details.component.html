@@ -10,6 +10,10 @@
       <a>{{getDisplayNameForValue(training.location)}}</a>
     </div>
     <div class="mb-3">
+      <h3 class="m-0">Privacy</h3>
+      <a>{{getDisplayNameForValueBool(training.isPrivate.toString())}}</a>
+    </div>
+    <div class="mb-3">
       <h3 class="m-0">Shots per round</h3>
       <a>{{training.shotsPerRound}}</a>
     </div>
@@ -35,6 +39,18 @@
       <button class="btn delete-button btn-lg w-50 ms-3" (click)="deleteTraining()">Delete</button>
     </div>
   </div>
+
+  <div class="rounded bg-dark text-white p-2 my-2 d-flex flex-column">
+    <div class="mb-3">
+      <h3 class="m-0">Bow name</h3>
+      <a>{{statistics.accuracyPercentageAverage.toFixed(2)}} %</a>
+    </div>
+    <div class="">
+      <h3 class="m-0">Description</h3>
+      <a>{{statistics.highestAccuracyPercentage.toFixed(2)}} %</a>
+    </div>
+  </div>
+
 
   <div class="rounded bg-dark text-white p-2 my-2 d-flex flex-column">
     <div class="mb-3">

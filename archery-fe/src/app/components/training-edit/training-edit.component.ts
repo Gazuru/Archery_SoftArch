@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {TrainingService} from "../../services/training.service";
-import {BowResponse} from "../../models/bow-response";
 import {ActivatedRoute} from "@angular/router";
 import {TrainingResponse} from "../../models/training-response";
 
@@ -12,7 +11,8 @@ import {TrainingResponse} from "../../models/training-response";
 })
 export class TrainingEditComponent implements OnInit {
   locations = ["indoors", "outdoors"];
-  training:TrainingResponse=new TrainingResponse();
+  isPrivates = ["true", "false"];
+  training: TrainingResponse = new TrainingResponse();
 
   descriptionMinLength: number = 3;
   nameMinLength: number = 3;
@@ -23,17 +23,19 @@ export class TrainingEditComponent implements OnInit {
     distance: new FormControl('', [Validators.required, Validators.min(5)]),
     maxPoints: new FormControl('', [Validators.required, Validators.min(10)]),
     location: new FormControl('', [Validators.required]),
+    isPrivate: new FormControl('', [Validators.required]),
     board: new FormControl('', [Validators.required, Validators.minLength(5)])
   });
 
   private sub: any;
-  constructor(private trainingService: TrainingService,private route: ActivatedRoute) {
+
+  constructor(private trainingService: TrainingService, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.sub = this.route.params.subscribe(params => {
       this.trainingService.getTraining(params['id']).subscribe(
-        (data)=>this.training=data
+        (data) => this.training = data
       );
     });
   }
@@ -43,10 +45,10 @@ export class TrainingEditComponent implements OnInit {
   }
 
   submit() {
-   this.trainingService.putTraining(this.myForm,this.training.id);
+    this.trainingService.putTraining(this.myForm, this.training.id);
   }
 
-  deleteTraining(){
+  deleteTraining() {
 
   }
 
@@ -57,6 +59,19 @@ export class TrainingEditComponent implements OnInit {
       }
       case "outdoors": {
         return "Outdoors";
+      }
+      default:
+        return "Not found";
+    }
+  }
+
+  getDisplayNameForValueBool(value: string): string {
+    switch (value) {
+      case "true": {
+        return "Private";
+      }
+      case "false": {
+        return "Public";
       }
       default:
         return "Not found";

@@ -9,6 +9,7 @@ import {TrainingService} from "../../services/training.service";
 })
 export class TrainingNewComponent implements OnInit {
   locations = ["indoors", "outdoors"];
+  isPrivates = ["true", "false"];
 
   descriptionMinLength: number = 3;
   nameMinLength: number = 3;
@@ -19,6 +20,7 @@ export class TrainingNewComponent implements OnInit {
     distance: new FormControl('', [Validators.required, Validators.min(5)]),
     maxPoints: new FormControl('', [Validators.required, Validators.min(10)]),
     location: new FormControl('', [Validators.required]),
+    isPrivate: new FormControl('', [Validators.required]),
     board: new FormControl('', [Validators.required, Validators.minLength(5)])
   });
 
@@ -44,6 +46,19 @@ export class TrainingNewComponent implements OnInit {
       }
       case "outdoors": {
         return "Outdoors";
+      }
+      default:
+        return "Not found";
+    }
+  }
+
+  getDisplayNameForValueBool(value: string): string {
+    switch (value) {
+      case "true": {
+        return "Private";
+      }
+      case "false": {
+        return "Public";
       }
       default:
         return "Not found";

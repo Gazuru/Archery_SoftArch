@@ -2,7 +2,7 @@ export class TrainingResponse{
   id:string="";
   name:string="";
   user:string="";
-  isPrivate:boolean=false;
+  isPrivate:string="";
   description:string="";
   shotsPerRound:number=0;
   distance:number=0;

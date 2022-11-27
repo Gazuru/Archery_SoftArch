@@ -19,6 +19,7 @@ export class TrainingDetailsComponent implements OnInit {
   disabled = false;
   statistics: StatisticsResponse = new StatisticsResponse();
 
+
   maxRoundPoints = 0;
   myForm = new FormGroup({
     score: new FormControl('', [Validators.required, Validators.min(0), Validators.max(this.maxRoundPoints)])
@@ -71,6 +72,19 @@ export class TrainingDetailsComponent implements OnInit {
       }
       case "outdoors": {
         return "Outdoors";
+      }
+      default:
+        return "Not found";
+    }
+  }
+
+  getDisplayNameForValueBool(value: string): string {
+    switch (value) {
+      case "true": {
+        return "Private";
+      }
+      case "false": {
+        return "Public";
       }
       default:
         return "Not found";

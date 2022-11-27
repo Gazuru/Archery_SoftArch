@@ -35,6 +35,21 @@
       </div>
 
       <div class="form-group mb-3">
+        <label for="location">Privacy</label>
+        <select
+          class="form-control"
+          formControlName="isPrivate"
+          id="isPrivate">
+          <option *ngFor="let isPrivate of isPrivates" [ngValue]="isPrivate">
+            {{ getDisplayNameForValueBool(isPrivate) }}
+          </option>
+        </select>
+        <div *ngIf="f['isPrivate'].touched && f['isPrivate'].invalid" class="alert alert-danger mt-2">
+          <div *ngIf="f['isPrivate'].errors && f['isPrivate'].errors['required']" class="">Privacy is required.</div>
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
         <label for="shotsPerRound">Shots per round</label>
         <input
           formControlName="shotsPerRound"
