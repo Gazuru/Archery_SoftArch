@@ -36,10 +36,6 @@ public class TrainingService {
     private final StatisticsService statisticsService;
 
     public List<TrainingResponse> getTrainings(UUID userId) {
-        if (Objects.nonNull(userId)) {
-            return trainingRepository.findAllByUserId(userId).stream().map(this::toResponse).toList();
-        }
-
         var authority =
                 SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().map(GrantedAuthority::getAuthority).toList().get(0);
         var username =
@@ -49,8 +45,14 @@ public class TrainingService {
                         .orElseThrow(() -> new ArcheryException("User cannot be found by username: " + username));
 
         if (authority.equals("ROLE_ADMIN")) {
+            if (Objects.nonNull(userId)) {
+                return trainingRepository.findAllByUserId(userId).stream().map(this::toResponse).toList();
+            }
             return trainingRepository.findAll().stream().map(this::toResponse).toList();
         } else {
+            if (Objects.nonNull(userId)) {
+                return trainingRepository.findAllByIsPrivateIsFalseOrUserId(userId).stream().map(this::toResponse).toList();
+            }
             return trainingRepository.findAllByIsPrivateIsFalseOrUserId(user.getId()).stream().map(this::toResponse).toList();
         }
     }
