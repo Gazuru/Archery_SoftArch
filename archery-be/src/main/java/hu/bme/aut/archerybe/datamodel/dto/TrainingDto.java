@@ -1,5 +1,7 @@
 package hu.bme.aut.archerybe.datamodel.dto;
 
+import java.util.UUID;
+
 public record TrainingDto(
         String name,
         String location,
@@ -7,6 +9,8 @@ public record TrainingDto(
         Integer distance,
         Integer maxPoints,
         String board,
-        String description
+        String description,
+        UUID bow,
+        Boolean isPrivate
 ) {
 }

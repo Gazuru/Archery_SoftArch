@@ -31,12 +31,12 @@ public class UserDetailsImpl implements UserDetails {
     public static UserDetails build(User user) {
         return new UserDetailsImpl(
                 user.getId(), user.getUsername(), user.getEmail(), user.getPassword(),
-                Set.of(mapToGrantedAuthority(user.getAuthority()))
+                mapToGrantedAuthority(user.getAuthority())
         );
     }
 
-    private static GrantedAuthority mapToGrantedAuthority(Authority authority) {
-        return new SimpleGrantedAuthority(authority.getRole().name());
+    public static Set<GrantedAuthority> mapToGrantedAuthority(Authority authority) {
+        return Set.of(new SimpleGrantedAuthority(authority.getRole().name()));
     }
 
     @Override
