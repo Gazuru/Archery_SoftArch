@@ -55,7 +55,7 @@ public class UserService {
         return new UserResponse(user.getId(),
                 user.getUsername(),
                 user.getEmail(),
-                user.getAuthority(),
+                user.getAuthority().getRole().toString(),
                 user.getTrainings().stream().map(Training::getId).toList());
     }
 
