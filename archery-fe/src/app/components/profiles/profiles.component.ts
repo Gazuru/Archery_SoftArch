@@ -16,7 +16,7 @@ export class ProfilesComponent implements OnInit {
   roles = ["ROLE_ADMIN", "ROLE_USER"]
 
   myForm = new FormGroup({
-    score: new FormControl('', [Validators.required])
+    role: new FormControl('', [Validators.required])
   });
 
   currentEditUserId: string = "";

@@ -18,11 +18,11 @@ export class ProfileService {
   }
 
   getProfile(id: string): Observable<ProfileResponse> {
-    return this.http.get<ProfileResponse>(API_URL + "profile/" + id);
+    return this.http.get<ProfileResponse>(API_URL + "user/" + id);
   }
 
   getProfiles(): Observable<ProfileResponse[]> {
-    return this.http.get<ProfileResponse[]>(API_URL + "profiles");
+    return this.http.get<ProfileResponse[]>(API_URL + "users");
   }
 
   postRole(form: FormGroup, userId: string) {
@@ -30,7 +30,7 @@ export class ProfileService {
       role: form.get('role')?.value
     };
 
-    this.http.post<any>(API_URL + "profiles/" + userId, request)
+    this.http.post<any>(API_URL + "user/" + userId, request)
       .subscribe(res => {
         console.log(res);
       }, null, () => {
