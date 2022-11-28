@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { RoundRowComponent } from './round-row.component';
+import {RoundRowComponent} from './round-row.component';
 
 describe('RoundRowComponent', () => {
   let component: RoundRowComponent;
@@ -8,9 +8,9 @@ describe('RoundRowComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RoundRowComponent ]
+      declarations: [RoundRowComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(RoundRowComponent);
     component = fixture.componentInstance;

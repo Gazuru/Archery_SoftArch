@@ -57,10 +57,6 @@ export class TrainingEditComponent implements OnInit {
     this.trainingService.putTraining(this.myForm, this.training.id);
   }
 
-  deleteTraining() {
-
-  }
-
   getDisplayNameForValue(value: string): string {
     switch (value) {
       case "indoors": {

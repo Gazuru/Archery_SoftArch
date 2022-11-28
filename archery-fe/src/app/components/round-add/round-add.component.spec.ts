@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { RoundAddComponent } from './round-add.component';
+import {RoundAddComponent} from './round-add.component';
 
 describe('RoundAddComponent', () => {
   let component: RoundAddComponent;
@@ -8,9 +8,9 @@ describe('RoundAddComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RoundAddComponent ]
+      declarations: [RoundAddComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(RoundAddComponent);
     component = fixture.componentInstance;

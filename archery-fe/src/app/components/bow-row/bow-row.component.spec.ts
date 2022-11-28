@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { BowRowComponent } from './bow-row.component';
+import {BowRowComponent} from './bow-row.component';
 
 describe('BowRowComponent', () => {
   let component: BowRowComponent;
@@ -8,9 +8,9 @@ describe('BowRowComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BowRowComponent ]
+      declarations: [BowRowComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(BowRowComponent);
     component = fixture.componentInstance;
