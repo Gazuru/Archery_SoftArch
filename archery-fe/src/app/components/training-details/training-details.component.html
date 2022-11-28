@@ -33,6 +33,10 @@
       <h3 class="m-0">Description</h3>
       <a>{{training.description}}</a>
     </div>
+    <div *ngIf="!userOwned">
+      <h3 class="m-0">Creator</h3>
+      <a>{{training.username}}</a>
+    </div>
 
     <div *ngIf="userOwned || showAdmin" class="d-flex justify-content-between">
       <button class="btn edit-button btn-lg w-50 me-3" [routerLink]="['/training-edit',training.id]">Edit</button>
