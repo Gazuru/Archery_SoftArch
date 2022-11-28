@@ -12,7 +12,7 @@ import {BowService} from "../../services/bow.service";
 export class TrainingNewComponent implements OnInit {
   locations = ["indoors", "outdoors"];
   isPrivates = ["true", "false"];
-  bows:BowResponse[]=[];
+  bows: BowResponse[] = [];
 
   descriptionMinLength: number = 3;
   nameMinLength: number = 3;
@@ -28,13 +28,13 @@ export class TrainingNewComponent implements OnInit {
     board: new FormControl('', [Validators.required, Validators.minLength(5)])
   });
 
-  constructor(private trainingService: TrainingService,private bowService: BowService) {
+  constructor(private trainingService: TrainingService, private bowService: BowService) {
   }
 
   ngOnInit(): void {
     this.bowService.getBows().subscribe(
-      data=>{
-        this.bows=data;
+      data => {
+        this.bows = data;
       }
     );
   }
@@ -46,7 +46,6 @@ export class TrainingNewComponent implements OnInit {
   submit() {
     this.trainingService.postTraining(this.myForm);
   }
-
 
 
   getDisplayNameForValue(value: string): string {

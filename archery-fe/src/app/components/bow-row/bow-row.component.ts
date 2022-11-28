@@ -1,17 +1,14 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-bow-row',
   templateUrl: './bow-row.component.html',
   styleUrls: ['./bow-row.component.css']
 })
-export class BowRowComponent implements OnInit {
+export class BowRowComponent {
   @Input() bow: any;
 
   constructor() {
-  }
-
-  ngOnInit(): void {
   }
 
   getDisplayNameForValue(value: string): string {

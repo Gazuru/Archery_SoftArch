@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 
 @Component({
@@ -6,7 +6,7 @@ import {AuthService} from "../../services/auth.service";
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   form: any = {
     username: null,
     email: null,
@@ -17,10 +17,6 @@ export class RegisterComponent implements OnInit {
   errorMessage = '';
 
   constructor(private authService: AuthService) {
-  }
-
-  ngOnInit(): void {
-    // TODO document why this method 'ngOnInit' is empty
   }
 
   onSubmit(): void {

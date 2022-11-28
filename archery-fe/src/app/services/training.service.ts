@@ -22,14 +22,12 @@ export class TrainingService {
     );
   }
 
-//TODO
   getTrainingsByUserId(id: string): Observable<TrainingResponse[]> {
     return this.http.get<TrainingResponse[]>(API_URL + 'trainings',
       {
         params: {userId: id}
       });
   }
-
 
   getTraining(id: string): Observable<TrainingResponse> {
     return this.http.get<TrainingResponse>(API_URL + 'training/' + id);

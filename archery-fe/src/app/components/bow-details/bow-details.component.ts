@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BowResponse} from "../../models/bow-response";
 import {BowService} from "../../services/bow.service";
 import {ActivatedRoute} from "@angular/router";
@@ -9,15 +9,18 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./bow-details.component.css']
 })
 export class BowDetailsComponent implements OnInit {
-  bow:BowResponse=new BowResponse();
-  constructor(private bowService:BowService, private route:ActivatedRoute) { }
+  bow: BowResponse = new BowResponse();
+
+  constructor(private bowService: BowService, private route: ActivatedRoute) {
+  }
 
 
   private sub: any;
+
   ngOnInit(): void {
     this.sub = this.route.params.subscribe(params => {
-      this.bowService.getBow(params['id']).subscribe(data=>{
-        this.bow=data;
+      this.bowService.getBow(params['id']).subscribe(data => {
+        this.bow = data;
       });
     });
   }

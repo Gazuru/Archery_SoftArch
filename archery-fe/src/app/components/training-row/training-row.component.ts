@@ -1,15 +1,15 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-training-row',
   templateUrl: './training-row.component.html',
   styleUrls: ['./training-row.component.css']
 })
-export class TrainingRowComponent implements OnInit {
-  @Input() training:any;
-  constructor() { }
+export class TrainingRowComponent {
 
-  ngOnInit(): void {
+  @Input() training: any;
+
+  constructor() {
   }
 
 }

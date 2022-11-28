@@ -1,3 +1,3 @@
-export class RoundRequest{
-  score:number=0;
+export class RoundRequest {
+  score: number = 0;
 }
