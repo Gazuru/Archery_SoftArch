@@ -16,10 +16,6 @@ import {BowDetailsComponent} from './components/bow-details/bow-details.componen
 import {ProfilesComponent} from './components/profiles/profiles.component';
 import {TrainingsComponent} from './components/trainings/trainings.component';
 import {TrainingDetailsComponent} from './components/training-details/training-details.component';
-import {RoundsComponent} from './components/rounds/rounds.component';
-import {RoundAddComponent} from './components/round-add/round-add.component';
-import {RoundDetailsComponent} from './components/round-details/round-details.component';
-import {RoundEditComponent} from './components/round-edit/round-edit.component';
 import {TrainingEditComponent} from './components/training-edit/training-edit.component';
 import {BowRowComponent} from './components/bow-row/bow-row.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
@@ -40,10 +36,6 @@ import {RoundRowComponent} from './components/round-row/round-row.component';
     ProfilesComponent,
     TrainingsComponent,
     TrainingDetailsComponent,
-    RoundsComponent,
-    RoundAddComponent,
-    RoundDetailsComponent,
-    RoundEditComponent,
     TrainingEditComponent,
     BowRowComponent,
     TrainingRowComponent,
