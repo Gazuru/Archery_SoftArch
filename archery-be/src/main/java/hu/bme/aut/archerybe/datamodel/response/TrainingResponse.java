@@ -6,6 +6,7 @@ public record TrainingResponse(
         UUID id,
         UUID statistics,
         UUID user,
+        String username,
         Boolean isPrivate,
         String name,
         String location,

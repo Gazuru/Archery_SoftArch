@@ -121,6 +121,7 @@ public class TrainingService {
         return new TrainingResponse(training.getId(),
                 training.getStatistics().getId(),
                 training.getUser().getId(),
+                training.getUser().getUsername(),
                 training.isPrivate(),
                 training.getName(),
                 training.getLocation().toString(),
