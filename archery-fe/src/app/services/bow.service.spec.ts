@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { BowService } from './bow.service';
+import {BowService} from './bow.service';
 
 describe('BowService', () => {
   let service: BowService;

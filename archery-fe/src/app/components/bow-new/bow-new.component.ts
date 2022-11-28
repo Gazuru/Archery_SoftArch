@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {BowService} from "../../services/bow.service";
 
@@ -7,8 +7,8 @@ import {BowService} from "../../services/bow.service";
   templateUrl: './bow-new.component.html',
   styleUrls: ['./bow-new.component.css']
 })
-export class BowNewComponent implements OnInit {
-  types=["traditional","hunting_recurve","olympic_recurve","compound"];
+export class BowNewComponent {
+  types = ["traditional", "hunting_recurve", "olympic_recurve", "compound"];
 
 
   descriptionMinLength: number = 3;
@@ -20,9 +20,6 @@ export class BowNewComponent implements OnInit {
   });
 
   constructor(private bowService: BowService) {
-  }
-
-  ngOnInit(): void {
   }
 
   get f() {

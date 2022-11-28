@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { RoundService } from './round.service';
+import {RoundService} from './round.service';
 
 describe('RoundService', () => {
   let service: RoundService;
