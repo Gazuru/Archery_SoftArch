@@ -1,0 +1,10 @@
+<div class="rounded bg-red text-white p-2 my-2 d-flex justify-content-between" [routerLink]="['/bow-details', bow.id]">
+  <div>
+    <h3>Name</h3>
+    <a>{{bow.name}}</a>
+  </div>
+  <div class="text-end">
+    <h3>Type</h3>
+    <a>{{getDisplayNameForValue(bow.type)}}</a>
+  </div>
+</div>

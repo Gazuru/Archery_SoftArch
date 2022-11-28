@@ -2,3 +2,52 @@
 .container {
   margin: 10px;
 }
+
+.bg-red {
+  background-color: #D90429;
+}
+
+.add-button {
+  height: 65px;
+  width: 65px;
+  border-radius: 20px;
+  background-color: #D90429;
+  border-width: 0;
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+}
+
+.plus-icon {
+  font-size: 40px;
+  color: white;
+}
+
+
+.delete-button {
+  border-radius: 6px;
+  background-color: #D90429;
+  color: white;
+}
+
+.delete-button:focus-visible, .delete-button:hover, .delete-button:active {
+  background-color: #D90429;
+}
+
+.edit-button {
+  border-radius: 6px;
+  background-color: #8D99AE;
+  color: white;
+}
+
+.edit-button:focus-visible, .edit-button:hover, .edit-button:active {
+  background-color: #8D99AE;
+}
+
+
+.no-overflow {
+  width: 50%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

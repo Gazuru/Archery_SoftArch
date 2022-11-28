@@ -1,21 +1,43 @@
 package hu.bme.aut.archerybe.datamodel.entity;
 
+import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.*;
 
+import hu.bme.aut.archerybe.datamodel.enums.Location;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
-@Entity
+@Document(collection = "trainings")
 @Getter
 @Setter
 public class Training extends BaseEntity {
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "statistics_id")
     private Statistics statistics;
 
-    @OneToMany(mappedBy = "training")
-    private Set<Round> rounds;
+    @DocumentReference
+    private Set<Round> rounds = new HashSet<>();
+
+    @DocumentReference(lazy = true)
+    private User user;
+
+    private boolean isPrivate;
+
+    private String name;
+
+    private Location location;
+
+    private int shotsPerRound;
+
+    private int distance;
+
+    private int maxPoints;
+
+    private String board;
+
+    private String description;
+
+    private Bow bow;
 
 }

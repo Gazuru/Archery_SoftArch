@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
   isLoggedIn = false;
   showAdmin = false;
   username?: string;
+  userId: string = "";
 
   constructor(private tokenStorageService: TokenStorageService) {
   }
@@ -23,7 +24,7 @@ export class AppComponent implements OnInit {
       this.roles = user.roles;
 
       this.showAdmin = this.roles.includes('ROLE_ADMIN');
-
+      this.userId = user.id;
       this.username = user.username;
     }
   }
@@ -31,5 +32,12 @@ export class AppComponent implements OnInit {
   logout(): void {
     this.tokenStorageService.signOut();
     window.location.reload();
+  }
+
+  ToggleNavBar() {
+    let element: HTMLElement = document.getElementsByClassName('navbar-toggler')[0] as HTMLElement;
+    if (element.getAttribute('aria-expanded') == 'true') {
+      element.click();
+    }
   }
 }

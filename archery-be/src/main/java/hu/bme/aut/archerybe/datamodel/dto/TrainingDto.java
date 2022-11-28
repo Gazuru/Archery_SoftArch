@@ -1,12 +1,16 @@
 package hu.bme.aut.archerybe.datamodel.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import java.util.UUID;
 
-@Getter
-@Setter
-public class TrainingDto {
-
-
-
+public record TrainingDto(
+        String name,
+        String location,
+        Integer shotsPerRound,
+        Integer distance,
+        Integer maxPoints,
+        String board,
+        String description,
+        UUID bow,
+        Boolean isPrivate
+) {
 }

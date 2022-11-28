@@ -1,0 +1,8 @@
+<div class="m-2">
+  <h2>Trainings</h2>
+<app-training-row *ngFor="let training of trainings" [training]="training"></app-training-row>
+
+  <button class="add-button">
+    <fa-icon class="plus-icon" [icon]="faPlus" [routerLink]="['/training-new']"></fa-icon>
+  </button>
+</div>

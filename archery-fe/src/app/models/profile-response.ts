@@ -1,3 +1,6 @@
-export interface ProfileResponse{
-
+export class ProfileResponse {
+  id: string = "";
+  username: string = "";
+  email: string = "";
+  role: string = "";
 }

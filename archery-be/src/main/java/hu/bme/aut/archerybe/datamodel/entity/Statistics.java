@@ -1,17 +1,18 @@
 package hu.bme.aut.archerybe.datamodel.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
-@Entity
+@Document(collection = "statistics")
 public class Statistics extends BaseEntity {
 
-    @OneToOne(mappedBy = "statistics")
-    private Training training;
+    private Double accuracyPercentageAverage;
+
+    private Double highestAccuracyPercentage;
+
+    private Double lowestAccuracyPercentage;
 
 }

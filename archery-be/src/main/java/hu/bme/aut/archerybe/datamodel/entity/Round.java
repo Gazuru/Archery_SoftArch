@@ -1,18 +1,21 @@
 package hu.bme.aut.archerybe.datamodel.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 @Getter
 @Setter
-@Entity
+@Document(collection = "rounds")
+@CompoundIndex(def = "{'training': 1, 'roundNumber': 1}", unique = true)
 public class Round extends BaseEntity {
 
-    @ManyToOne
-    @JoinColumn(name = "training_id", nullable = false)
+    @DocumentReference(lazy = true)
     private Training training;
+
+    private int score;
+
+    private int roundNumber;
 }

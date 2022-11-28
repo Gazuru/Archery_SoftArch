@@ -1,0 +1,158 @@
+<div class="m-2">
+  <h2>Edit training</h2>
+  <form [formGroup]="myForm" (ngSubmit)="submit()">
+    <div class="rounded-3 text-bg-dark p-2">
+
+
+      <div class="form-group mb-3">
+        <label for="name">Name</label>
+        <input
+          [ngModel]="training.name"
+          formControlName="name"
+          id="name"
+          type="text"
+          class="form-control">
+        <div *ngIf="f['name'].touched && f['name'].invalid" class="alert alert-danger mt-2">
+          <div *ngIf="f['name'].errors && f['name'].errors['required']" class="">Name is required.</div>
+          <div *ngIf="f['name'].errors && f['name'].errors['minlength']" class="">Name should be at
+            least {{nameMinLength}}
+            characters.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="location">Location</label>
+        <select
+          [ngModel]="training.location"
+          class="form-control"
+          formControlName="location"
+          id="location">
+          <option *ngFor="let location of locations" [ngValue]="location">
+            {{ getDisplayNameForValue(location) }}
+          </option>
+        </select>
+        <div *ngIf="f['location'].touched && f['location'].invalid" class="alert alert-danger mt-2">
+          <div *ngIf="f['location'].errors && f['location'].errors['required']" class="">Location is required.</div>
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="isPrivate">Privacy</label>
+        <select
+          [ngModel]="training.isPrivate"
+          class="form-control"
+          formControlName="isPrivate"
+          id="isPrivate">
+          <option *ngFor="let isPrivate of isPrivates" [ngValue]="isPrivate">
+            {{ getDisplayNameForValueBool(isPrivate) }}
+          </option>
+        </select>
+        <div *ngIf="f['isPrivate'].touched && f['isPrivate'].invalid" class="alert alert-danger mt-2">
+          <div *ngIf="f['isPrivate'].errors && f['isPrivate'].errors['required']" class="">Privacy is required.</div>
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="shotsPerRound">Shots per round</label>
+        <input
+          [ngModel]="training.shotsPerRound"
+          formControlName="shotsPerRound"
+          id="shotsPerRound"
+          type="number"
+          class="form-control">
+        <div *ngIf="f['shotsPerRound'].touched && f['shotsPerRound'].invalid" class="alert alert-danger mt-2">
+          <div *ngIf="f['shotsPerRound'].errors && f['shotsPerRound'].errors['required']" class="">Shots per round is
+            required.
+          </div>
+          <div *ngIf="f['shotsPerRound'].errors && f['shotsPerRound'].errors['min']" class="">Should be at least 3
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="distance">Distance (m)</label>
+        <input
+          [ngModel]="training.distance"
+          formControlName="distance"
+          id="distance"
+          type="number"
+          class="form-control">
+        <div *ngIf="f['distance'].touched && f['distance'].invalid" class="alert alert-danger mt-2">
+          <div *ngIf="f['distance'].errors && f['distance'].errors['required']" class="">Distance is required.</div>
+          <div *ngIf="f['distance'].errors && f['distance'].errors['min']" class="">Should be at least 5 m
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="maxPoints">Max points</label>
+        <input
+          [ngModel]="training.maxPoints"
+          formControlName="maxPoints"
+          id="maxPoints"
+          type="number"
+          class="form-control">
+        <div *ngIf="f['maxPoints'].touched && f['maxPoints'].invalid" class="alert alert-danger mt-2">
+          <div *ngIf="f['maxPoints'].errors && f['maxPoints'].errors['required']" class="">Distance is required.</div>
+          <div *ngIf="f['maxPoints'].errors && f['maxPoints'].errors['min']" class="">Should be at least 10
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="board">Board</label>
+        <input
+          [ngModel]="training.board"
+          formControlName="board"
+          id="board"
+          type="text"
+          class="form-control">
+        <div *ngIf="f['board'].touched && f['board'].invalid" class="alert alert-danger mt-2">
+          <div *ngIf="f['board'].errors && f['board'].errors['required']" class="">Board is required.</div>
+          <div *ngIf="f['board'].errors && f['board'].errors['minlength']" class="">Board should be at least 5
+            characters.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="bow">Bow</label>
+        <select
+          class="form-control"
+          formControlName="bow"
+          id="bow">
+          <option *ngFor="let bow of bows" [ngValue]="bow.id">
+            {{ bow.name }}
+          </option>
+        </select>
+        <div *ngIf="f['location'].touched && f['location'].invalid" class="alert alert-danger mt-2">
+          <div *ngIf="f['location'].errors && f['location'].errors['required']" class="">Location is required.</div>
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="description">Description</label>
+        <textarea
+          [ngModel]="training.description"
+          formControlName="description"
+          id="description"
+          rows="5"
+          type="text"
+          class="form-control"></textarea>
+        <div *ngIf="f['description'].touched && f['description'].invalid" class="alert alert-danger mt-2">
+          <div *ngIf="f['description'].errors && f['description'].errors['required']">Description is required.</div>
+          <div *ngIf="f['description'].errors && f['description'].errors['minlength']">Description should be at
+            least {{descriptionMinLength}} characters.
+          </div>
+        </div>
+      </div>
+      <div>
+      </div>
+      <div class="form-group submit-container mt-2">
+        <button class="btn btn-light btn-block w-100" [disabled]="myForm.invalid" type="submit">Save training</button>
+      </div>
+    </div>
+
+  </form>
+</div>
